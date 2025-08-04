@@ -9,13 +9,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="min-h-screen flex overflow-hidden">
-      {/* Left Dashboard Side - Hidden on mobile */}
-      <div className="hidden lg:flex flex-[1.5] bg-gray-50 p-8 overflow-hidden justify-center items-center">
+    <div className="h-screen flex overflow-hidden">
+      {/* left side */}
+      <div className="hidden lg:flex flex-[1.5] bg-gray-50 p-8 overflow-hidden justify-center items-center -mt-5">
         <div className="max-w-2xl w-full h-full max-h-[600px] flex flex-col">
           <div className="grid grid-cols-2 gap-4 h-full">
             <div className="flex flex-col gap-4 h-full">
-              {/* Revenue Card with floating animation */}
               <div className="bg-white rounded-xl pb-8 shadow-sm h-fit animate-pulse-gentle hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
                 <p className="text-gray-500 text-sm pt-3 px-3">Total Revenue</p>
                 <div className="flex items-center gap-2 mb-3 pb-3 px-3">
@@ -101,7 +100,6 @@ const LoginPage = () => {
                 </div>
               </div>
 
-              {/* Teacher Card with slide animation */}
               <div className="bg-white rounded-xl p-4 shadow-sm flex-1 animate-slide-in-left hover:shadow-md transition-all duration-300">
                 <h3 className="text-base font-bold text-gray-900 mb-3">
                   Verified Teacher
@@ -112,7 +110,7 @@ const LoginPage = () => {
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
                     alt="Monday S"
-                    className="w-8 h-8 rounded-full animate-spin-slow"
+                    className="w-8 h-8 rounded-full"
                   />
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -190,7 +188,6 @@ const LoginPage = () => {
             </div>
 
             <div className="flex flex-col gap-4 max-w-xl h-full">
-              {/* Insight Card */}
               <div className="bg-white rounded-xl p-4 shadow-sm flex-1 animate-slide-in-right hover:shadow-md transition-all duration-300">
                 <p className="text-gray-500 text-sm mb-1">My Dashboard</p>
                 <h2 className="text-lg font-bold text-gray-900 mb-4">
@@ -199,9 +196,9 @@ const LoginPage = () => {
 
                 <div className="space-y-4">
                   {[
-                    { amount: "Rp 476.250.000", label: "Monthly Revenue", color: "green", icon: "💰" },
-                    { amount: "24.240.320", label: "Total Students", color: "red", icon: "👥" },
-                    { amount: "Rp9.240.000", label: "Total Teachers", color: "purple", icon: "🎓" }
+                    { amount: "Rp 476.250.000", label: "Monthly Revenue", color: "gray", text: "green"},
+                    { amount: "24.240.320", label: "Total Students", color: "gray", text: "red"},
+                    { amount: "Rp9.240.000", label: "Total Teachers", color: "gray", text: "purple"}
                   ].map((item, index) => (
                     <div key={index} className="flex items-center justify-between hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-fade-in-up" style={{animationDelay: `${index * 0.3}s`}}>
                       <div>
@@ -211,7 +208,7 @@ const LoginPage = () => {
                         <p className="text-gray-500 text-xs">{item.label}</p>
                       </div>
                       <div className={`w-7 h-7 bg-${item.color}-100 rounded-lg flex items-center justify-center animate-bounce`} style={{animationDelay: `${index * 0.5}s`}}>
-                        <span className={`text-${item.color}-600 text-sm`}>
+                        <span className={`text-${item.text}-600 text-sm`}>
                           {index === 0 && (
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
                               <path d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 0 1-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004ZM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 0 1-.921.42Z" />
@@ -237,8 +234,7 @@ const LoginPage = () => {
                 </div>
               </div>
 
-              {/* Top Achievers Card */}
-              <div className="bg-white rounded-xl p-4 shadow-sm flex-1 animate-fade-in hover:shadow-md transition-all duration-300">
+              <div className="bg-white rounded-xl p-4 shadow-sm flex-1 animate-fade-in  hover:shadow-md transition-all duration-300">
                 <h3 className="text-base font-bold text-gray-900 mb-3">
                   Top Achievers
                 </h3>
@@ -247,7 +243,7 @@ const LoginPage = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="size-4 animate-spin-slow"
+                    className="size-4 "
                   >
                     <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
                   </svg>
@@ -298,7 +294,7 @@ const LoginPage = () => {
         </div>
       </div>
 
-      {/* Right Login Side - Responsive */}
+      {/* Right Side */}
       <div className="bg-white p-4 md:p-8 flex flex-1 flex-col justify-center shadow-xl min-h-screen lg:min-h-auto">
         <div className="mb-6">
           <div className="flex items-center justify-center text-center gap-2 mb-6">
@@ -310,7 +306,7 @@ const LoginPage = () => {
             </span>
           </div>
 
-          <h1 className="text-lg md:text-xl font-bold text-gray-900 mb-2 text-center font-poppins">
+          <h1 className="text-2xl md:text-xl font-bold text-gray-900 mb-2 text-center font-poppins">
             Welcome Back 🫰🏻
           </h1>
           <p className="text-gray-500 text-sm text-center">
@@ -318,7 +314,6 @@ const LoginPage = () => {
           </p>
         </div>
 
-        {/* Form Container - Responsive */}
         <div className="w-full max-w-sm mx-auto space-y-6">
           <div className="relative">
             <label
@@ -371,7 +366,7 @@ const LoginPage = () => {
 
           <div className="text-right">
             <span className="text-gray-500 hover:text-gray-700 text-sm cursor-pointer">
-              Forgot My Password
+              Forgot My Password?
             </span>
           </div>
 
@@ -379,7 +374,7 @@ const LoginPage = () => {
             onClick={() => {
               console.log("Login clicked:", { email, password });
             }}
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-xl transition duration-200"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-4 rounded-full transition duration-200"
           >
             Sign In Now
           </button>
@@ -422,11 +417,6 @@ const LoginPage = () => {
           100% { stroke-dasharray: 1000 0; }
         }
         
-        @keyframes spin-slow {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
         @keyframes wiggle {
           0%, 7% { transform: rotateZ(0); }
           15% { transform: rotateZ(-15deg); }
@@ -465,10 +455,6 @@ const LoginPage = () => {
         
         .animate-draw-line {
           animation: draw-line 2s ease-in-out infinite;
-        }
-        
-        .animate-spin-slow {
-          animation: spin-slow 4s linear infinite;
         }
         
         .animate-wiggle {
