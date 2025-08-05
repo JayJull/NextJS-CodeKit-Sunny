@@ -1,16 +1,17 @@
-import { Button } from '@/components/ui/button'
-import { Loader2Icon } from 'lucide-react'
+
+import { DashboardLayout } from '@/layouts/dashboard-layout'
 import React from 'react'
 
-function page() {
+export default function DashboardOverview() {
+  const user = {
+    name: "Cihuy",
+    role: "manager" as const,
+    avatar: "https://example.com/avatar.jpg"
+  }
+
   return (
-    <>
-    <Button size="sm" disabled>
-      <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-      Loading...
-    </Button>
-    </>
+    <DashboardLayout user={user}>
+      <div className='text-2xl font-bold text-black'>Ahay</div>
+    </DashboardLayout>
   )
 }
-
-export default page
