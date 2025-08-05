@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/layout/sidebar-layout";
 import AppNavbar from "@/components/layout/navbar-layout";
@@ -24,13 +24,7 @@ const SunnyDashboard: React.FC<SunnyDashboardProps> = ({
   onSearch,
 }) => {
   const router = useRouter();
-  const menuItems = getMenuItemsByRole(user.role);
-
-  const handleMenuItemClick = (item: any) => {
-    if (item.href) {
-      router.push(item.href);
-    }
-  };
+  const menuItems = useMemo(() => getMenuItemsByRole(user.role), [user.role]);
 
   const handleSearch = (query: string) => {
     onSearch?.(query);
@@ -53,7 +47,7 @@ const SunnyDashboard: React.FC<SunnyDashboardProps> = ({
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="flex min-h-screen w-full bg-gray-50 dark:bg-gray-950">
-        <AppSidebar menuItems={menuItems} onItemClick={handleMenuItemClick} />
+        <AppSidebar menuItems={menuItems} />
         <SidebarInset className="flex flex-1 flex-col min-w-0">
           <AppNavbar
             user={user}

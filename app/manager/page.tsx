@@ -1,20 +1,7 @@
-'use client';
-import SunnyDashboard from "@/layouts/dashboard-layout";
-import React from "react";
-
-export default function DashboardOverview() {
-  const user = {
-    name: "Cihuyy",
-    email: "cihuy@gmail.com",
-    role: "manager" as const,
-    avatar: "logo/logo.png"
-  }
-  
+export default function ManagerOverview() {
   return (
-    <SunnyDashboard user={user} >
-      <div>
-        hai
-      </div>
-    </SunnyDashboard>
-  )
+    <div>
+      <h1>Manager Overview</h1>
+    </div>
+  );
 }

@@ -37,10 +37,9 @@ export interface MenuItem {
 
 interface AppSidebarProps {
   menuItems: MenuItem[];
-  onItemClick?: (item: MenuItem) => void;
 }
 
-const AppSidebar: React.FC<AppSidebarProps> = ({ menuItems, onItemClick }) => {
+const AppSidebar: React.FC<AppSidebarProps> = ({ menuItems }) => {
   const pathname = usePathname();
   const [openItems, setOpenItems] = React.useState<string[]>([]);
   const { theme, setTheme } = useTheme();
@@ -178,7 +177,6 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ menuItems, onItemClick }) => {
                     >
                       <Link
                         href={child.href || "#"}
-                        onClick={() => onItemClick?.(child)}
                         className="flex items-center gap-3 w-full text-left"
                       >
                         <span className="flex items-center justify-center w-5 h-5 transition-colors duration-300 ease-in-out">
@@ -209,7 +207,6 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ menuItems, onItemClick }) => {
         >
           <Link
             href={item.href || "#"}
-            onClick={() => onItemClick?.(item)}
             className="flex items-center gap-3 w-full text-left"
           >
             <span className="flex items-center justify-center w-5 h-5 text-muted-foreground transition-colors duration-300 ease-in-out">

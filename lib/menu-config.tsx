@@ -22,7 +22,7 @@ export const studentMenuItems: MenuItem[] = [
         id: "my-profile",
         label: "My Profile",
         icon: <Users className="h-4 w-4" />,
-        href: "/student/profile",
+        href: "/student",
       },
       {
         id: "classroom",
@@ -93,7 +93,7 @@ export const teacherMenuItems: MenuItem[] = [
         id: "dashboard",
         label: "Dashboard",
         icon: <LayoutDashboard className="h-4 w-4" />,
-        href: "/teacher/dashboard",
+        href: "/teacher",
       },
       {
         id: "my-classes",
