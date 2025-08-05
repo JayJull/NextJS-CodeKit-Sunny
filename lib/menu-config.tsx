@@ -1,4 +1,3 @@
-// components/layout/menu-items.tsx
 import React from "react";
 import {
   Users,
@@ -8,16 +7,12 @@ import {
   Calendar,
   School,
   UserCheck,
-  Bell,
-  MessageSquare,
-  BarChart3,
   Award,
   LayoutDashboard,
   FileText,
 } from "lucide-react";
 import { MenuItem } from "@/components/layout/sidebar-layout";
 
-// Student Menu Items berdasarkan gambar
 export const studentMenuItems: MenuItem[] = [
   {
     id: "general",
@@ -134,7 +129,6 @@ export const teacherMenuItems: MenuItem[] = [
   },
 ];
 
-// Manager Menu Items
 export const managerMenuItems: MenuItem[] = [
   {
     id: "general",
