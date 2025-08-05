@@ -21,7 +21,9 @@ const LoginPage = () => {
                   <h1 className="text-2xl font-bold text-gray-900">
                     Rp52.259.205
                   </h1>
-                  <span className="text-green-500 text-sm animate-bounce">▲</span>
+                  <span className="text-green-500 text-sm animate-bounce">
+                    ▲
+                  </span>
                 </div>
 
                 <div className="relative h-24">
@@ -88,14 +90,54 @@ const LoginPage = () => {
                   </svg>
 
                   <div className="flex justify-between text-xs text-gray-500 mt-1 px-4">
-                    <span className="animate-fade-in" style={{animationDelay: '0.1s'}}>Jan</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.2s'}}>Feb</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.3s'}}>Mar</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.4s'}}>Apr</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.5s'}}>Mei</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.6s'}}>Jun</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.7s'}}>Jul</span>
-                    <span className="animate-fade-in" style={{animationDelay: '0.8s'}}>Aug</span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.1s" }}
+                    >
+                      Jan
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.2s" }}
+                    >
+                      Feb
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.3s" }}
+                    >
+                      Mar
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.4s" }}
+                    >
+                      Apr
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.5s" }}
+                    >
+                      Mei
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.6s" }}
+                    >
+                      Jun
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.7s" }}
+                    >
+                      Jul
+                    </span>
+                    <span
+                      className="animate-fade-in"
+                      style={{ animationDelay: "0.8s" }}
+                    >
+                      Aug
+                    </span>
                   </div>
                 </div>
               </div>
@@ -127,7 +169,7 @@ const LoginPage = () => {
                         viewBox="0 0 24 24"
                         fill="currentColor"
                         className="size-4 animate-bounce"
-                        style={{animationDelay: '1s'}}
+                        style={{ animationDelay: "1s" }}
                       >
                         <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
                         <path
@@ -151,9 +193,17 @@ const LoginPage = () => {
                 <p className="text-gray-600 text-sm mb-3">Classroom List</p>
                 <div className="space-y-3">
                   {[0, 1, 2].map((index) => (
-                    <div key={index} className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-fade-in-up" style={{animationDelay: `${index * 0.2}s`}}>
+                    <div
+                      key={index}
+                      className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-fade-in-up"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    >
                       <Image
-                        src={index === 2 ? "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=32&h=32&fit=crop" : "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=32&h=32&fit=crop"}
+                        src={
+                          index === 2
+                            ? "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=32&h=32&fit=crop"
+                            : "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=32&h=32&fit=crop"
+                        }
                         alt="Class"
                         className="rounded"
                         width={26}
@@ -161,7 +211,9 @@ const LoginPage = () => {
                       />
                       <div>
                         <p className="font-medium text-gray-900 text-sm">
-                          {index === 2 ? "IX Art Menakjubkan" : "IX Multimedia Keren"}
+                          {index === 2
+                            ? "IX Art Menakjubkan"
+                            : "IX Multimedia Keren"}
                         </p>
                         <div className="text-green-500 text-xs flex items-center gap-1">
                           <svg
@@ -196,32 +248,73 @@ const LoginPage = () => {
 
                 <div className="space-y-4">
                   {[
-                    { amount: "Rp 476.250.000", label: "Monthly Revenue", color: "gray", text: "green"},
-                    { amount: "24.240.320", label: "Total Students", color: "gray", text: "red"},
-                    { amount: "Rp9.240.000", label: "Total Teachers", color: "gray", text: "purple"}
+                    {
+                      amount: "Rp 476.250.000",
+                      label: "Monthly Revenue",
+                      color: "gray",
+                      text: "green",
+                    },
+                    {
+                      amount: "24.240.320",
+                      label: "Total Students",
+                      color: "gray",
+                      text: "red",
+                    },
+                    {
+                      amount: "Rp9.240.000",
+                      label: "Total Teachers",
+                      color: "gray",
+                      text: "purple",
+                    },
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center justify-between hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-fade-in-up" style={{animationDelay: `${index * 0.3}s`}}>
+                    <div
+                      key={index}
+                      className="flex items-center justify-between hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-fade-in-up"
+                      style={{ animationDelay: `${index * 0.3}s` }}
+                    >
                       <div>
                         <p className="text-base font-bold text-gray-900">
                           {item.amount}
                         </p>
                         <p className="text-gray-500 text-xs">{item.label}</p>
                       </div>
-                      <div className={`w-7 h-7 bg-${item.color}-100 rounded-lg flex items-center justify-center animate-bounce`} style={{animationDelay: `${index * 0.5}s`}}>
+                      <div
+                        className={`w-7 h-7 bg-${item.color}-100 rounded-lg flex items-center justify-center animate-bounce`}
+                        style={{ animationDelay: `${index * 0.5}s` }}
+                      >
                         <span className={`text-${item.text}-600 text-sm`}>
                           {index === 0 && (
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="size-6"
+                            >
                               <path d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 0 1-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004ZM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 0 1-.921.42Z" />
-                              <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v.816a3.836 3.836 0 0 0-1.72.756c-.712.566-1.112 1.35-1.112 2.178 0 .829.4 1.612 1.113 2.178.502.4 1.102.647 1.719.756v2.978a2.536 2.536 0 0 1-.921-.421l-.879-.66a.75.75 0 0 0-.9 1.2l.879.66c.533.4 1.169.645 1.821.75V18a.75.75 0 0 0 1.5 0v-.81a4.124 4.124 0 0 0 1.821-.749c.745-.559 1.179-1.344 1.179-2.191 0-.847-.434-1.632-1.179-2.191a4.122 4.122 0 0 0-1.821-.75V8.354c.29.082.559.213.786.393l.415.33a.75.75 0 0 0 .933-1.175l-.415-.33a3.836 3.836 0 0 0-1.719-.755V6Z" clipRule="evenodd" />
+                              <path
+                                fillRule="evenodd"
+                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v.816a3.836 3.836 0 0 0-1.72.756c-.712.566-1.112 1.35-1.112 2.178 0 .829.4 1.612 1.113 2.178.502.4 1.102.647 1.719.756v2.978a2.536 2.536 0 0 1-.921-.421l-.879-.66a.75.75 0 0 0-.9 1.2l.879.66c.533.4 1.169.645 1.821.75V18a.75.75 0 0 0 1.5 0v-.81a4.124 4.124 0 0 0 1.821-.749c.745-.559 1.179-1.344 1.179-2.191 0-.847-.434-1.632-1.179-2.191a4.122 4.122 0 0 0-1.821-.75V8.354c.29.082.559.213.786.393l.415.33a.75.75 0 0 0 .933-1.175l-.415-.33a3.836 3.836 0 0 0-1.719-.755V6Z"
+                                clipRule="evenodd"
+                              />
                             </svg>
                           )}
                           {index === 1 && (
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="size-4"
+                            >
                               <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
                             </svg>
                           )}
                           {index === 2 && (
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="size-4"
+                            >
                               <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
                               <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
                               <path d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
@@ -254,11 +347,30 @@ const LoginPage = () => {
 
                 <div className="space-y-4">
                   {[
-                    { name: "Bimore S", points: "2400", rank: "#1", img: "photo-1507003211169-0a1dd7228f2d" },
-                    { name: "Chestata R", points: "2350", rank: "#2", img: "photo-1507003211169-0a1dd7228f2d" },
-                    { name: "Maudy A", points: "2300", rank: "#3", img: "photo-1438761681033-6461ffad8d80" }
+                    {
+                      name: "Bimore S",
+                      points: "2400",
+                      rank: "#1",
+                      img: "photo-1507003211169-0a1dd7228f2d",
+                    },
+                    {
+                      name: "Chestata R",
+                      points: "2350",
+                      rank: "#2",
+                      img: "photo-1507003211169-0a1dd7228f2d",
+                    },
+                    {
+                      name: "Maudy A",
+                      points: "2300",
+                      rank: "#3",
+                      img: "photo-1438761681033-6461ffad8d80",
+                    },
                   ].map((student, index) => (
-                    <div key={index} className="flex items-center gap-3 hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-slide-in-up" style={{animationDelay: `${index * 0.2}s`}}>
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 hover:bg-gray-50 p-2 rounded-lg transition-all duration-200 animate-slide-in-up"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    >
                       <Image
                         src={`https://images.unsplash.com/${student.img}?w=40&h=40&fit=crop&crop=face`}
                         alt={student.name}
@@ -279,10 +391,15 @@ const LoginPage = () => {
                           >
                             <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
                           </svg>
-                          <p className="text-gray-500 text-xs">{student.points} Points</p>
+                          <p className="text-gray-500 text-xs">
+                            {student.points} Points
+                          </p>
                         </div>
                       </div>
-                      <div className="bg-blue-500 text-white px-2 py-1 rounded text-xs font-bold animate-bounce" style={{animationDelay: `${index * 0.3}s`}}>
+                      <div
+                        className="bg-blue-500 text-white px-2 py-1 rounded text-xs font-bold animate-bounce"
+                        style={{ animationDelay: `${index * 0.3}s` }}
+                      >
                         {student.rank}
                       </div>
                     </div>
@@ -383,80 +500,133 @@ const LoginPage = () => {
 
       <style jsx>{`
         @keyframes pulse-gentle {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-2px); }
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-2px);
+          }
         }
-        
+
         @keyframes slide-in-left {
-          0% { transform: translateX(-20px); opacity: 0; }
-          100% { transform: translateX(0); opacity: 1; }
+          0% {
+            transform: translateX(-20px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
         }
-        
+
         @keyframes slide-in-right {
-          0% { transform: translateX(20px); opacity: 0; }
-          100% { transform: translateX(0); opacity: 1; }
+          0% {
+            transform: translateX(20px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
         }
-        
+
         @keyframes slide-in-up {
-          0% { transform: translateY(20px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
+          0% {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
         }
-        
+
         @keyframes fade-in {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
         }
-        
+
         @keyframes fade-in-up {
-          0% { transform: translateY(10px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
+          0% {
+            transform: translateY(10px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
         }
-        
+
         @keyframes draw-line {
-          0% { stroke-dasharray: 0 1000; }
-          100% { stroke-dasharray: 1000 0; }
+          0% {
+            stroke-dasharray: 0 1000;
+          }
+          100% {
+            stroke-dasharray: 1000 0;
+          }
         }
-        
+
         @keyframes wiggle {
-          0%, 7% { transform: rotateZ(0); }
-          15% { transform: rotateZ(-15deg); }
-          20% { transform: rotateZ(10deg); }
-          25% { transform: rotateZ(-10deg); }
-          30% { transform: rotateZ(6deg); }
-          35% { transform: rotateZ(-4deg); }
-          40%, 100% { transform: rotateZ(0); }
+          0%,
+          7% {
+            transform: rotateZ(0);
+          }
+          15% {
+            transform: rotateZ(-15deg);
+          }
+          20% {
+            transform: rotateZ(10deg);
+          }
+          25% {
+            transform: rotateZ(-10deg);
+          }
+          30% {
+            transform: rotateZ(6deg);
+          }
+          35% {
+            transform: rotateZ(-4deg);
+          }
+          40%,
+          100% {
+            transform: rotateZ(0);
+          }
         }
-        
+
         .animate-pulse-gentle {
           animation: pulse-gentle 3s ease-in-out infinite;
         }
-        
+
         .animate-slide-in-left {
           animation: slide-in-left 0.8s ease-out forwards;
         }
-        
+
         .animate-slide-in-right {
           animation: slide-in-right 0.8s ease-out forwards;
         }
-        
+
         .animate-slide-in-up {
           animation: slide-in-up 0.6s ease-out forwards;
         }
-        
+
         .animate-fade-in {
           animation: fade-in 1s ease-out forwards;
           opacity: 0;
         }
-        
+
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
           opacity: 0;
         }
-        
+
         .animate-draw-line {
           animation: draw-line 2s ease-in-out infinite;
         }
-        
+
         .animate-wiggle {
           animation: wiggle 2s ease-in-out infinite;
         }
