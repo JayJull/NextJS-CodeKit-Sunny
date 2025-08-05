@@ -1,17 +1,20 @@
-
-import { DashboardLayout } from '@/layouts/dashboard-layout'
-import React from 'react'
+'use client';
+import SunnyDashboard from "@/layouts/dashboard-layout";
+import React from "react";
 
 export default function DashboardOverview() {
   const user = {
-    name: "Cihuy",
+    name: "Cihuyy",
+    email: "cihuy@gmail.com",
     role: "manager" as const,
-    avatar: "https://example.com/avatar.jpg"
+    avatar: "logo/logo.png"
   }
-
+  
   return (
-    <DashboardLayout user={user}>
-      <div className='text-2xl font-bold text-black'>Ahay</div>
-    </DashboardLayout>
+    <SunnyDashboard user={user} >
+      <div>
+        hai
+      </div>
+    </SunnyDashboard>
   )
 }
