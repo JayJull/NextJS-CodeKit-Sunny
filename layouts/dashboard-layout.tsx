@@ -1,3 +1,4 @@
+"use client";
 import React, { useMemo } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/layout/sidebar-layout";

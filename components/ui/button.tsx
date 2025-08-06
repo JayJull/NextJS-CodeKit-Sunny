@@ -21,8 +21,6 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         emerald:
           "border border-emerald-500 bg-emerald-500 text-white shadow-sm hover:bg-emerald-600 hover:text-white",
-        Details:
-          "border border-yellow-950 bg-yellow-950 text-white shadow-sm hover:bg-yellow-900 hover:text-white",
       },
       size: {
         default: "h-9 px-4 py-2",
