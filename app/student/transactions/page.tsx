@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BookText, Clock, Download, Eye } from "lucide-react";
 import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // untuk app router
 
 import {
   Pagination,
@@ -18,6 +19,7 @@ import {
 
 const transactions = [
   {
+    
     image: "/student/multimedia.png",
     title: "Multimedia 3A",
     grade: 12,
@@ -25,6 +27,7 @@ const transactions = [
     status: "pending",
   },
   {
+   
     image: "/student/multimedia.png",
     title: "Multimedia 3A",
     grade: 12,
@@ -32,6 +35,7 @@ const transactions = [
     status: "paid",
   },
   {
+    
     image: "/student/multimedia.png",
     title: "Multimedia 3A",
     grade: 12,
@@ -61,7 +65,10 @@ const transactions = [
   },
 ];
 
+
 export default function page() {
+  const router = useRouter();
+
     const [currentPage, setCurrentPage] = useState(1);
       const itemsPerPage = 3;
       const totalPages = Math.ceil(transactions.length / itemsPerPage);
@@ -135,7 +142,8 @@ export default function page() {
 
   {/* Details Button */}
   <div className="w-full sm:w-auto">
-    <Button className="w-full sm:w-auto bg-[#0f0f1f] hover:bg-[#1c1c2c] text-white rounded-full justify-center">
+    <Button
+    className="w-full sm:w-auto bg-[#0f0f1f] hover:bg-[#1c1c2c] text-white rounded-full justify-center">
       <Eye size={16} className="mr-2" />
       Details
     </Button>
@@ -145,7 +153,7 @@ export default function page() {
       ))}
       </div>
       <div className="mt-6">
-        <Pagination className="items-start justify-center">
+        <Pagination className="items-start justify-start" >
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious

@@ -7,10 +7,10 @@ export default function StudentLayout({
   children: React.ReactNode;
 }) {
   const user = {
-    name: "Cihuyy",
+    name: "Shen WoAini",
     email: "cihuy@gmail.com",
     role: "student" as const,
-    avatar: "logo/logo.png"
+    avatar: "student/profile.png" 
   };
 
   return (

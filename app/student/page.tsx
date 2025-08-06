@@ -54,36 +54,37 @@ export default function StudentOverview() {
         </Card>
 
         {/* Card Community */}
-        <Card className="relative overflow-hidden w-fullp-0">
-          <img
-            src="/student/image.png"
-            alt="Join Community"
-            className="absolute inset-0 w-full h-full object-cover z-0"
-          />
-          <CardContent className="relative z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4 flex flex-col justify-end h-full">
-            <div className="flex items-end justify-between w-full">
-              {/* Kiri: Judul dan Deskripsi */}
-              <div>
-                <h3 className="text-lg font-semibold">Join Community</h3>
-                <p className="text-sm text-white/80">Connect and Grow 🙌</p>
-              </div>
+        <Card className="relative overflow-hidden w-full h-[300px] sm:h-[360px] md:h-[420px]">
+  <img
+    src="/student/image.png"
+    alt="Join Community"
+    className="absolute inset-0 w-full h-full object-cover z-0"
+  />
+  <CardContent className="relative z-10 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-6 flex flex-col justify-end h-full">
+    <div className="flex items-end justify-between w-full">
+      {/* Kiri: Judul dan Deskripsi */}
+      <div>
+        <h3 className="text-lg font-semibold">Join Community</h3>
+        <p className="text-sm text-white/80">Connect and Grow 🙌</p>
+      </div>
 
-              {/* Kanan: Tombol */}
-              <div>
-                <Button
-                  variant="secondary"
-                  className="rounded-full px-4 py-2 text-sm"
-                >
-                  Join Now
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* Kanan: Tombol */}
+      <div>
+        <Button
+          variant="secondary"
+          className="rounded-full px-4 py-2 text-sm"
+        >
+          Join Now
+        </Button>
+      </div>
+    </div>
+  </CardContent>
+</Card>
+
       </div>
 
 <h3 className="text-sm font-semibold mb-4 text-black mt-4">Personal Information</h3>
-      <Card className="w-full bg-muted mt-4">
+      <Card className="w-full bg-white mt-4">
       <CardContent className="p-4">
         
         <div className="grid gap-4 text-sm">
