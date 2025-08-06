@@ -1,7 +1,11 @@
+import { Download } from "lucide-react";
+
+
+
 export default function StudentOverview() {
   return (
     <div>
-      <h1>Student Overview</h1>
+    <p>profile</p>
     </div>
   );
 }
