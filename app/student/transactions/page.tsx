@@ -79,20 +79,20 @@ export default function page() {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            My Tuition Transactions
-          </h1>
-          <p className="text-gray-500 text-sm">
-            View Your Transactions Details
-          </p>
-        </div>
-        <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-          <Download size={16} />
-          <span className="text-sm font-medium">Import CSV</span>
-        </button>
-      </div>
+      <div className="flex justify-between items-center mb-6 sm:items-start">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">
+                My Tuition Transaction
+              </h1>
+              <p className="text-gray-500 text-sm">
+                View Your Transactions Details
+              </p>
+            </div>
+            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <Download size={16} />
+              <span className="sm:inline text-sm font-medium">Import CSV</span>
+            </button>
+          </div>
 <div className="space-y-4">
       {currentData.map((item, idx) => (
        <Card key={idx} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5">
