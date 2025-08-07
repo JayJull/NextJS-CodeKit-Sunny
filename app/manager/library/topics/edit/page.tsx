@@ -69,7 +69,6 @@ export default function AddTopic() {
         <Card>
           <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl">Complete the Form</CardTitle>
           <CardContent className="p-4 sm:p-6 space-y-6 sm:space-y-8">
-            {/* Topic Image Section */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-24 sm:flex-shrink-0">
                 Topic Image
