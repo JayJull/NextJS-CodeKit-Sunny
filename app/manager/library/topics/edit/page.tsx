@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Sparkles, Image, CirclePlus, Pocket } from "lucide-react";
+import { ArrowLeft, Sparkles, Image, Pocket, BadgeCheck } from "lucide-react";
 
 export default function AddTopic() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [topicName, setTopicName] = useState<string>("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+  const [topicName, setTopicName] = useState<string>(
+    "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  );
   const [isFocused, setIsFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -36,22 +38,22 @@ export default function AddTopic() {
   };
 
   useEffect(() => {
-    setSelectedImage('/logo/logo.png');
-  }, [])
+    setSelectedImage("/logo/logo.png");
+  }, []);
 
   return (
     <div className="p-4 sm:p-2 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-            Manage Topics
+            Edit Topics
           </h1>
           <a
             href="/manager/library/topics"
             className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
-            View & update your topics
+            Manage Topics
           </a>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -67,7 +69,9 @@ export default function AddTopic() {
 
       <div>
         <Card>
-          <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl">Complete the Form</CardTitle>
+          <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl">
+            Complete the Form
+          </CardTitle>
           <CardContent className="p-4 sm:p-6 space-y-6 sm:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-24 sm:flex-shrink-0">
@@ -90,7 +94,7 @@ export default function AddTopic() {
                   className="bg-gray-900 text-white hover:bg-gray-500 px-4 sm:px-6 py-2 h-10 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-base flex-1 sm:flex-initial sm:ml-auto"
                   onClick={handleAddPhotoClick}
                 >
-                  Add Photo
+                  Change Photo
                 </Button>
               </div>
               <input
@@ -136,8 +140,8 @@ export default function AddTopic() {
                 Cancel
               </Button>
               <Button className="bg-blue-600 text-white hover:bg-blue-700 px-4 sm:px-6 py-2 rounded-lg flex items-center justify-center gap-2 h-10 text-sm sm:text-base w-full sm:w-auto">
-                Create Now
-                <CirclePlus className="w-4 h-4 sm:w-5 sm:h-5" />
+                Save Changes
+                <BadgeCheck className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
             </div>
           </CardContent>

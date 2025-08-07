@@ -40,14 +40,14 @@ export default function AddTopic() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-            Manage Topics
+            Add New Topics
           </h1>
           <a
             href="/manager/library/topics"
             className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
-            View & update your topics
+            Manage Topics
           </a>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
