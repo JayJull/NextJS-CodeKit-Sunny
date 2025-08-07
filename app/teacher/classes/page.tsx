@@ -264,15 +264,17 @@ export default function TeacherOverview() {
                   </div>
 
                   <div>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      className="sm:size-default"
-                      disabled
-                    >
-                      <Eye size={14} className="mr-1 sm:mr-2 sm:size-4" />
-                      <span className="text-xs sm:text-sm">Details</span>
-                    </Button>
+                    <div className="cursor-not-allowed">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="sm:size-default pointer-events-none"
+                        disabled
+                      >
+                        <Eye size={14} className="mr-1 sm:mr-2 sm:size-4" />
+                        <span className="text-xs sm:text-sm">Details</span>
+                      </Button>
+                    </div>
                   </div>
                 </Card>
               ))}

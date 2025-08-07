@@ -13,6 +13,9 @@ import {
   Mail,
   Settings,
   Palette,
+  icons,
+  Laptop,
+  Dumbbell,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -30,18 +33,56 @@ export default function TeacherDetails() {
     },
   };
   const listStudent = {
-    "TRPL 3A": {
-      name: "Jenny",
-      email: "jenny@gmail.com",
-      image: "/teacher/2.jpg",
-    },
+    "TRPL 3A": [
+      {
+        name: "Jenny",
+        email: "jenny@gmail.com",
+        image: "/teacher/2.jpg",
+      },
+      {
+        name: "Izaa",
+        email: "Izza@gmail.com",
+        image: "/teacher/3.jpg",
+      },
+      {
+        name: "Joko",
+        email: "joko@gmail.com",
+        image: "/teacher/4.jpg",
+      },
+      {
+        name: "Omi",
+        email: "omi@gmail.com",
+        image: "/teacher/5.jpg",
+      },
+    ],
   };
   const listSubject = {
-    "TRPL 3A": {
-      name: "Canvas Whisper",
-      image: "/teacher/2.jpg",
-      subject: "Desain Visual",
-    },
+    "TRPL 3A": [
+      {
+        name: "Canvas Whisper",
+        image: "/teacher/2.jpg",
+        subject: "Desain Visual",
+        icons: <Palette />,
+      },
+      {
+        name: "Learning Code",
+        image: "/teacher/2.jpg",
+        subject: "Computer Sciense",
+        icons: <Laptop />,
+      },
+      {
+        name: "Sport And Healt",
+        image: "/teacher/2.jpg",
+        subject: "Athlethics",
+        icons: <Dumbbell />,
+      },
+      {
+        name: "Object Sketching",
+        image: "/teacher/2.jpg",
+        subject: "Desain Visual",
+        icons: <Palette />,
+      },
+    ],
   };
   const classroom = classroomDetails[
     className as keyof typeof classroomDetails
@@ -51,16 +92,8 @@ export default function TeacherDetails() {
     totalStudents: "0",
     image: "/teacher/1.jpg",
   };
-  const list = listStudent[className as keyof typeof listStudent] || {
-    name: className,
-    email: className,
-    image: "/teacher/2.jpg",
-  };
-  const subject = listSubject[className as keyof typeof listSubject] || {
-    name: className,
-    subject: className,
-    image: "/teacher/2.jpg",
-  };
+  const list = listStudent[className as keyof typeof listStudent] || [];
+  const subject = listSubject[className as keyof typeof listSubject] || [];
   return (
     <div className="p-3 sm:p-6">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
@@ -96,7 +129,7 @@ export default function TeacherDetails() {
                 className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <h3 className="text-base sm:text-lg font-semibold truncate">
+                <h3 className="text-sm sm:text-lg font-semibold truncate">
                   {classroom.title}
                 </h3>
                 <p className="text-sm text-muted-foreground flex items-center gap-1">
@@ -111,7 +144,7 @@ export default function TeacherDetails() {
                 <span className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground sm:justify-center">
                   Total Students
                 </span>
-                <span className="text-zinc-950 font-bold text-sm sm:text-base text-muted-foreground flex items-center gap-1">
+                <span className="text-zinc-950 font-bold text-sm sm:text-sm text-muted-foreground flex items-center gap-1">
                   <Users size={14} className="text-sky-600" />
                   <span className="truncate max-w-[120px] sm:max-w-none">
                     {classroom.totalStudents}
@@ -136,61 +169,76 @@ export default function TeacherDetails() {
         </div>
       </div>
 
-      {/* Daftar Mata Pelajaran */}
+      {/* List Student*/}
       <div className="bg-gray-50 min-h-screen">
         <div className="min-h-screen pt-4">
-          <div className="flex gap-6">
+          {" "}
+          <div className="flex flex-col lg:flex-row gap-6">
+            {" "}
             {/* Left Side - List Students */}
-            <div className="w-1/2">
+            <div className="w-full lg:w-1/2">
               <h2 className="text-xl font-bold mb-4 text-gray-800">
                 List Students
               </h2>
-              <Card className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4">
-                <div className="flex items-center gap-3 sm:gap-6">
-                  <img
-                    src={list.image}
-                    alt={list.name}
-                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg font-semibold truncate">
-                      {list.name}
-                    </h3>
-                    <div className="text-sm text-gray-500 flex items-center gap-1">
-                      <Mail size={14} />
-                      {list.email}
+              <div className="space-y-4">
+                {list.map((student, index) => (
+                  <Card
+                    key={index}
+                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4 w-full"
+                  >
+                    <div className="flex items-center gap-3 sm:gap-6">
+                      <img
+                        src={student.image}
+                        alt={student.name}
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full rounded-lg flex-shrink-0"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm sm:text-lg font-semibold truncate">
+                          {student.name}
+                        </h3>
+                        <div className="text-sm text-gray-500 flex items-center gap-1">
+                          <Mail size={14} />
+                          {student.email}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-end gap-4 mr-2">
-                  <Settings className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-                </div>
-              </Card>
+                    <div className="flex items-center justify-end gap-4 mr-2">
+                      <Settings className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
-
             {/* Right Side - List Subject */}
-            <div className="w-1/2">
+            <div className="w-full lg:w-1/2">
               <h2 className="text-xl font-bold mb-4 text-gray-800">
                 List Subject
               </h2>
-              <Card className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4">
-                <div className="flex items-center gap-3 sm:gap-6">
-                  <img
-                    src={subject.image}
-                    alt={subject.name}
-                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base sm:text-lg font-semibold truncate">
-                      {subject.name}
-                    </h3>
-                    <div className="text-base sm:text-lg font-semibold truncate flex items-center gap-1">
-                      <Palette size={14} />
-                      {subject.name}
+              <div className="space-y-4">
+                {subject.map((subjectItem, index) => (
+                  <Card
+                    key={index}
+                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4 w-full"
+                  >
+                    <div className="flex items-center gap-3 sm:gap-6">
+                      <img
+                        src={subjectItem.image}
+                        alt={subjectItem.name}
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg flex-shrink-0"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm sm:text-lg font-semibold truncate">
+                          {subjectItem.name}
+                        </h3>
+                        <div className="text-sm sm:text-lg font-semibold truncate flex items-center gap-1">
+                          {subjectItem.icons}
+                          {subjectItem.subject}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Card>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </div>
