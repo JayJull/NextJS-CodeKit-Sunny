@@ -29,7 +29,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const classrooms = [
   {
     image: "/teacher/1.jpg",
-    title: "Multimedia 3A",
+    title: "TRPL 3A",
     grade: 12,
     totalStudents: "240.520",
   },
@@ -41,7 +41,7 @@ const classrooms = [
   },
   {
     image: "/teacher/3.jpg",
-    title: "Design 3B",
+    title: "MIPA 3B",
     grade: 10,
     totalStudents: "97.500",
   },
@@ -270,6 +270,7 @@ export default function TeacherOverview() {
                       variant="secondary"
                       size="sm"
                       className="sm:size-default"
+                      disabled
                     >
                       <Eye size={14} className="mr-1 sm:mr-2 sm:size-4" />
                       <span className="text-xs sm:text-sm">Details</span>
