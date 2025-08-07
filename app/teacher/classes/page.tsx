@@ -2,14 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Download, Eye, Users, BookText } from "lucide-react";
 
 import {
@@ -22,9 +15,8 @@ import {
   PaginationEllipsis,
 } from "@/components/ui/pagination";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
 
 const classrooms = [
   {
@@ -146,14 +138,20 @@ export default function TeacherOverview() {
                   </div>
 
                   <div>
-                    <Button
-                      variant="emerald"
-                      size="sm"
-                      className="sm:size-default"
+                    <Link
+                      href={`/teacher/details?class=${encodeURIComponent(
+                        item.title
+                      )}`}
                     >
-                      <Eye size={14} className="mr-1 sm:mr-2 sm:size-4" />
-                      <span className="text-xs sm:text-sm">Details</span>
-                    </Button>
+                      <Button
+                        variant="emerald"
+                        size="sm"
+                        className="sm:size-default"
+                      >
+                        <Eye size={14} className="mr-1 sm:mr-2 sm:size-4" />
+                        <span className="text-xs sm:text-sm">Details</span>
+                      </Button>
+                    </Link>
                   </div>
                 </Card>
               ))}
