@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Plus,
   UploadCloud,
   Wallet,
@@ -11,6 +17,12 @@ import {
   ScrollText,
   Calendar,
   Mail,
+  Shield,
+  Book,
+  LayoutGrid,
+  School,
+  Users,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -47,7 +59,7 @@ export default function DashboardOverview() {
       id: 1,
       name: "Rain Senorita",
       email: "razka@sunny.com",
-      classroom: "IPS Gagat 20",
+      classroom: "IPS Goat 20",
       avatar:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
     },
@@ -55,7 +67,7 @@ export default function DashboardOverview() {
       id: 2,
       name: "Shen Woaini",
       email: "razka@sunny.com",
-      classroom: "IPS Gagat 20",
+      classroom: "IPS Goat 20",
       avatar:
         "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face",
     },
@@ -63,14 +75,14 @@ export default function DashboardOverview() {
       id: 3,
       name: "Masayoshi Ackerman",
       email: "razka@sunny.com",
-      classroom: "IPS Gagat 20",
+      classroom: "IPS Goat 20",
       avatar:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face",
     },
   ];
 
   return (
-    <div className="p-4 sm:p-6 space-y-6">
+    <div className="p-4 sm:p-2 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
@@ -90,13 +102,47 @@ export default function DashboardOverview() {
             <UploadCloud className="w-4 h-4 mr-2" />
             Import .CSV
           </Button>
-          <Button
-            size="lg"
-            className="bg-blue-600 hover:bg-blue-700 rounded-xl w-full sm:w-auto"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Create New
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 rounded-xl w-full sm:w-auto focus-visible:outline-none"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Create New
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-auto">
+              <DropdownMenuItem className="gap-2">
+                <Shield className="w-4 h-4" />
+                Topic
+              </DropdownMenuItem>
+              <DropdownMenuItem className="gap-2">
+                <Book className="w-4 h-4" />
+                Subject
+              </DropdownMenuItem>
+              <DropdownMenuItem className="gap-2">
+                <GraduationCap className="w-4 h-4" />
+                Grade
+              </DropdownMenuItem>
+              <DropdownMenuItem className="gap-2">
+                <LayoutGrid className="w-4 h-4" />
+                Classroom
+              </DropdownMenuItem>
+              <DropdownMenuItem className="gap-2">
+                <School className="w-4 h-4" />
+                Teacher
+              </DropdownMenuItem>
+              <DropdownMenuItem className="gap-2">
+                <User className="w-4 h-4" />
+                Student
+              </DropdownMenuItem>
+              <DropdownMenuItem className="gap-2">
+                <Users className="w-4 h-4" />
+                User
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -126,7 +172,9 @@ export default function DashboardOverview() {
             </div>
             <div className="flex items-center justify-between">
               <div className="space-y-1 sm:space-y-2">
-                <p className="text-xl sm:text-2xl font-bold text-gray-900">16.000.000</p>
+                <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                  16.000.000
+                </p>
                 <p className="text-xs sm:text-sm text-gray-500 font-medium">
                   Total Transactions
                 </p>
@@ -135,7 +183,7 @@ export default function DashboardOverview() {
           </CardContent>
         </Card>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-auto lg:h-[400px]">
         <div className="order-1 md:order-1">
           <Card className="h-full border-gray-100 shadow-sm hover:shadow-md transition-shadow">
@@ -145,7 +193,9 @@ export default function DashboardOverview() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1 sm:space-y-2">
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900">12.560</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                    12.560
+                  </p>
                   <p className="text-xs sm:text-sm text-gray-500 font-medium">
                     Total Student
                   </p>
@@ -166,7 +216,9 @@ export default function DashboardOverview() {
                 className="w-32 h-32 sm:w-48 sm:h-48 lg:w-[200px] lg:h-[200px] object-contain"
               />
               <div className="space-y-1 sm:space-y-2">
-                <h3 className="text-base sm:text-lg font-semibold">Try All Features!</h3>
+                <h3 className="text-base sm:text-lg font-semibold">
+                  Try All Features!
+                </h3>
                 <p className="text-xs sm:text-sm text-blue-100 leading-relaxed">
                   Upgrade to Pro and turn your dashboard into the ultimate
                   organizational tool.
@@ -184,7 +236,9 @@ export default function DashboardOverview() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1 sm:space-y-2">
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900">22.360</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                    22.360
+                  </p>
                   <p className="text-xs sm:text-sm text-gray-500 font-medium">
                     Total School Grades
                   </p>
@@ -202,7 +256,9 @@ export default function DashboardOverview() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1 sm:space-y-2">
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900">6.205</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                    6.205
+                  </p>
                   <p className="text-xs sm:text-sm text-gray-500 font-medium">
                     Total Teacher
                   </p>
@@ -220,7 +276,9 @@ export default function DashboardOverview() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1 sm:space-y-2">
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900">6.205</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">
+                    6.205
+                  </p>
                   <p className="text-xs sm:text-sm text-gray-500 font-medium">
                     Total Classrooms
                   </p>
@@ -237,7 +295,9 @@ export default function DashboardOverview() {
             <CardTitle className="text-base sm:text-lg font-semibold text-gray-900">
               Latest Transactions
             </CardTitle>
-            <p className="text-xs sm:text-sm text-gray-500">Recently Transactions</p>
+            <p className="text-xs sm:text-sm text-gray-500">
+              Recently Transactions
+            </p>
           </CardHeader>
           <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
             {transactions.map((transaction, index) => (
@@ -266,7 +326,9 @@ export default function DashboardOverview() {
                 )}
 
                 <div className="flex items-center justify-between">
-                  <p className="text-xs sm:text-sm text-gray-500">Grand total:</p>
+                  <p className="text-xs sm:text-sm text-gray-500">
+                    Grand total:
+                  </p>
                   <p className="font-semibold text-red-500 text-sm sm:text-base">
                     {transaction.amount}
                   </p>
@@ -281,7 +343,9 @@ export default function DashboardOverview() {
             <CardTitle className="text-base sm:text-lg font-semibold text-gray-900">
               Latest Students
             </CardTitle>
-            <p className="text-xs sm:text-sm text-gray-500">Recently Joined Students</p>
+            <p className="text-xs sm:text-sm text-gray-500">
+              Recently Joined Students
+            </p>
           </CardHeader>
           <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
             {students.map((student, index) => (
