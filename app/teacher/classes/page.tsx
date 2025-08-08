@@ -21,7 +21,7 @@ import Link from "next/link";
 const classrooms = [
   {
     image: "/teacher/1.jpg",
-    title: "TRPL 3A",
+    title: "Mutimedia 3A",
     grade: 12,
     totalStudents: "240.520",
   },
@@ -35,7 +35,7 @@ const classrooms = [
     image: "/teacher/3.jpg",
     title: "MIPA 3B",
     grade: 10,
-    totalStudents: "97.500",
+    totalStudents: "9.500.980",
   },
   {
     image: "/teacher/4.jpg",
@@ -104,7 +104,7 @@ export default function TeacherOverview() {
               {currentClassrooms.map((item, idx) => (
                 <Card
                   key={idx}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-3 sm:p-5"
+                  className="grid grid-cols-1 sm:grid-cols-3 sm:items-center gap-4 p-3 sm:p-5"
                 >
                   <div className="flex items-center gap-3 sm:gap-6">
                     <img
@@ -123,21 +123,21 @@ export default function TeacherOverview() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between sm:justify-end gap-4 sm:gap-6">
-                    <div className="flex flex-col sm:text-center">
-                      <span className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground sm:justify-center">
+                  <div className="flex justify-center">
+                    <div className="flex flex-col text-center">
+                      <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                         Total Students
                       </span>
-                      <span className="text-zinc-950 font-bold text-sm sm:text-base text-muted-foreground flex items-center gap-1">
+                      <span className="text-zinc-950 font-bold text-sm sm:text-base text-muted-foreground flex items-center gap-1 justify-center">
                         <Users size={14} className="text-sky-600" />
-                        <span className="truncate max-w-[120px] sm:max-w-none">
+                        <span className="whitespace-nowrap">
                           {item.totalStudents}
                         </span>
                       </span>
                     </div>
                   </div>
 
-                  <div>
+                  <div className="flex justify-end">
                     <Link
                       href={`/teacher/details?class=${encodeURIComponent(
                         item.title
