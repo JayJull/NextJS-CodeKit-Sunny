@@ -13,7 +13,6 @@ import {
   Mail,
   Settings,
   Palette,
-  icons,
   Laptop,
   Dumbbell,
 } from "lucide-react";
@@ -25,7 +24,7 @@ export default function TeacherDetails() {
 
   // Mock data for demonstration
   const classroomDetails = {
-    "TRPL 3A": {
+    "Mutimedia 3A": {
       image: "/teacher/1.jpg",
       title: "TRPL 3A",
       grade: 12,
@@ -33,7 +32,7 @@ export default function TeacherDetails() {
     },
   };
   const listStudent = {
-    "TRPL 3A": [
+    "Mutimedia 3A": [
       {
         name: "Jenny",
         email: "jenny@gmail.com",
@@ -57,7 +56,7 @@ export default function TeacherDetails() {
     ],
   };
   const listSubject = {
-    "TRPL 3A": [
+    "Mutimedia 3A": [
       {
         name: "Canvas Whisper",
         image: "/teacher/2.jpg",
@@ -121,7 +120,7 @@ export default function TeacherDetails() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Informasi Kelas */}
         <div className="lg:col-span-2 space-y-6">
-          <Card className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-3">
+          <Card className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4 w-full hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer">
             <div className="flex items-center gap-3 sm:gap-6">
               <img
                 src={classroom.image}
@@ -154,16 +153,10 @@ export default function TeacherDetails() {
             </div>
 
             <div>
-              <Link
-                href={`/teacher/details?class=${encodeURIComponent(
-                  classroom.title
-                )}`}
-              >
-                <Button variant="emerald" size="sm" className="sm:size-default">
-                  <PencilLine size={14} className="mr-1 sm:mr-2 sm:size-4" />
-                  <span className="text-xs sm:text-sm">Edit Classroom</span>
-                </Button>
-              </Link>
+              <Button variant="emerald" size="sm" className="sm:size-default">
+                <PencilLine size={14} className="mr-1 sm:mr-2 sm:size-4" />
+                <span className="text-xs sm:text-sm">Edit Classroom</span>
+              </Button>
             </div>
           </Card>
         </div>
@@ -182,30 +175,42 @@ export default function TeacherDetails() {
               </h2>
               <div className="space-y-4">
                 {list.map((student, index) => (
-                  <Card
-                    key={index}
-                    className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4 w-full"
-                  >
-                    <div className="flex items-center gap-3 sm:gap-6">
-                      <img
-                        src={student.image}
-                        alt={student.name}
-                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full rounded-lg flex-shrink-0"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-sm sm:text-lg font-semibold truncate">
-                          {student.name}
-                        </h3>
-                        <div className="text-sm text-gray-500 flex items-center gap-1">
-                          <Mail size={14} />
-                          {student.email}
+                  <div key={index}>
+                    <Link
+                      href={`/teacher/detailstudent?student=${encodeURIComponent(
+                        student.name
+                      )}&class=${encodeURIComponent(className)}`}
+                    >
+                      <Card className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4 w-full">
+                        <div className="flex items-center gap-3 sm:gap-6">
+                          <img
+                            src={student.image}
+                            alt={student.name}
+                            className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full rounded-lg flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm sm:text-lg font-semibold truncate">
+                              {student.name}
+                            </h3>
+                            <div className="text-sm text-gray-500 flex items-center gap-1">
+                              <Mail size={14} />
+                              {student.email}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-end gap-4 mr-2">
-                      <Settings className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-                    </div>
-                  </Card>
+                        <div className="flex items-center justify-end gap-4 mr-2">
+                          <Settings
+                            className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              // Handle settings click here
+                            }}
+                          />
+                        </div>
+                      </Card>
+                    </Link>
+                  </div>
                 ))}
               </div>
             </div>
