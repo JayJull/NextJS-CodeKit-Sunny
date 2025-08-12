@@ -1,4 +1,4 @@
-import { Book, BookOpen, Calendar, Download, Earth, GraduationCap, LucideWholeWord, Phone, Venus } from "lucide-react";
+import { BadgeCheck, Book, BookOpen, Calendar, Download, Earth, GraduationCap, LucideWholeWord, Phone, Venus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, School, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -22,11 +22,17 @@ export default function StudentOverview() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full min-h-[400px">
         {/* Card Profile */}
         <Card className="p-4 w-full flex flex-col items-center justify-center">
+          <div className="relative">
           <img
-            src="/student/profile.png"
+            src="/student/profile.png" // ganti dengan path gambar kamu
             alt="Profile"
-            className="w-30 h-30 rounded-full border-4 border-blue-500"
+            className="w-24 h-24 rounded-full border-4 border-blue-500 object-cover"
           />
+          {/* Check icon */}
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-blue-600 rounded-full p-1 shadow-md">
+            <BadgeCheck className="text-white w-4 h-4" />
+          </div>
+        </div>
           <h3 className="mt-4 font-semibold text-lg">Shen Woaini</h3>
           <div className="flex items-center gap-1 text-muted-foreground text-sm mt-1">
             <Mail size={14} /> shen@sunny.com
