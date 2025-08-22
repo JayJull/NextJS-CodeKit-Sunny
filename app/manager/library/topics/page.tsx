@@ -59,6 +59,12 @@ export default function TopicsPage() {
       subjects: "240 Subjects",
       certified: true,
     },
+    {
+      icon: <Code className="w-6 h-6" />,
+      title: "Web Development",
+      subjects: "240 Subjects",
+      certified: true,
+    },
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
