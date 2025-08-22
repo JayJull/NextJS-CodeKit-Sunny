@@ -10,6 +10,7 @@ import {
   Award,
   LayoutDashboard,
   FileText,
+  LaptopMinimalCheck,
 } from "lucide-react";
 import { MenuItem } from "@/components/layout/sidebar-layout";
 
@@ -96,9 +97,15 @@ export const teacherMenuItems: MenuItem[] = [
         href: "/teacher",
       },
       {
+        id: "my-subject",
+        label: "My Subject",
+        icon: <BookOpen className="h-4 w-4" />,
+        href: "/teacher/subject",
+      },
+      {
         id: "my-classes",
         label: "My Classes",
-        icon: <BookOpen className="h-4 w-4" />,
+        icon: <LaptopMinimalCheck className="h-4 w-4" />,
         href: "/teacher/classes",
       },
       {
