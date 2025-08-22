@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRef, useState } from "react";
 
 import {
+  AlertCircle,
   BadgeCheck,
   BadgeDollarSign,
   BarcodeIcon,
@@ -13,10 +14,14 @@ import {
   CalendarDays,
   Check,
   Download,
+  DownloadCloud,
+  DownloadIcon,
   FileDown,
+  FileQuestionIcon,
   FileText,
   Flag,
   Globe,
+  KeyRound,
   Mail,
   MessageSquare,
   MoveLeft,
@@ -85,39 +90,58 @@ export default function page() {
                 <BookText size={14} />
                 Computer Science
               </p>
+              <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
+                <FileQuestionIcon size={14} />
+                Quizez
+              </p>
+              <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
+                <KeyRound size={14} />
+                Rewards
+              </p>
             </div>
 
             {/* Tabs / Badges */}
-            <div className="flex gap-2">
-              <Badge variant="outline">ABOUT</Badge>
-              <Badge variant="outline">QUIZZES</Badge>
-              <Badge variant="outline">REWARDS</Badge>
-            </div>
+            <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+
+  <button className="border border-gray-300 text-black font-bold px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm">
+    ABOUT
+  </button>
+
+</div>
+
 
             {/* Description */}
             <div className="text-sm text-muted-foreground leading-relaxed">
+              <h3>Subject Description</h3>
               <p>
-                In this lesson, you’ll learn how to build the basic structure of
-                a web page using HTML (HyperText Markup Language), making it
-                perfect for beginners who want to understand how to structure a
-                page, add images, create links, and write clean, organized code.
-              </p>
-              <p className="mt-2">
-                We’ll cover everything from essential HTML tags and page layout
-                to developing good coding habits.
+                In this lesson, you’ll learn how to build the basic structure of a web page using HTML (HyperText Markup Language), making it perfect for beginners who want to understand how to structure a page, add images, create links, and write clean, organized code.
+We’ll cover everything from essential HTML tags and page layout to developing good coding.
               </p>
             </div>
 
             {/* Footer Section */}
-            <div className="flex items-center justify-between mt-4">
-              <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                <Flag size={14} />
-                Pay tuition to download material.
-              </div>
-              <Button variant="outline" disabled className="gap-1">
-                <FileDown size={16} />
+            <div className="flex gap-2">
+              {/* Left Button */}
+              <Button
+                disabled
+                className="bg-red-200 hover:bg-red-100 text-red-700 px-4 py-6"
+              >
+                <Flag className="w-6 h-6" />
+              </Button>
+
+              {/* Right Button */}
+              <Button
+                className="flex-1 bg-blue-600 hover:bg-gray-200 text-white px-4 py-6 justify-center gap-2"
+              >
+                <DownloadIcon className="w-4 h-4" />
                 Download Lesson
               </Button>
+            </div>
+
+            {/* Warning Section */}
+            <div className="flex items-center text-muted-foreground text-xs gap-2">
+              <AlertCircle className="w-4 h-4" />
+              <span>Pay tuition to download material.</span>
             </div>
           </Card>
         </div>
@@ -200,8 +224,8 @@ export default function page() {
                   <Globe className="h-4 w-4 mr-2" />
                   Tuition Fee
                 </div>
-                <Badge className="bg-red-100 text-red-600 px-3 py-1 text-xs rounded-full font-bold">
-                  BELUM LUNAS
+                <Badge className="bg-green-600 text-black px-3 py-1 text-xs rounded-full font-bold">
+                  PAID
                 </Badge>
               </div>
 
@@ -222,45 +246,44 @@ export default function page() {
       </div>
 
       <div className="space-y-3">
-  <h2 className="text-lg font-semibold">Subject Exams</h2>
+        <h2 className="text-lg font-semibold">Subject Exams</h2>
 
-  {exams.map((exam, index) => (
-    <div
-      key={index}
-      className="flex flex-col md:grid md:grid-cols-3 md:items-center bg-white border rounded-xl p-4 shadow-sm space-y-3 md:space-y-0"
-    >
-      {/* Kiri: Icon + Judul + Submissions */}
-      <div className="flex items-start space-x-3">
-        <div className="p-2 rounded-md bg-gray-100">
-          <FileText className="w-5 h-5 text-muted-foreground" />
-        </div>
-        <div>
-          <p className="font-semibold">{exam.title}</p>
-          <p className="text-sm text-muted-foreground">
-            {exam.submissions} Submissions
-          </p>
-        </div>
+        {exams.map((exam, index) => (
+          <div
+            key={index}
+            className="flex flex-col md:grid md:grid-cols-3 md:items-center bg-white border rounded-xl p-4 shadow-sm space-y-3 md:space-y-0"
+          >
+            {/* Kiri: Icon + Judul + Submissions */}
+            <div className="flex items-start space-x-3">
+              <div className="p-2 rounded-md bg-gray-100">
+                <FileText className="w-5 h-5 text-muted-foreground" />
+              </div>
+              <div>
+                <p className="font-semibold">{exam.title}</p>
+                <p className="text-sm text-muted-foreground">
+                  {exam.submissions} Submissions
+                </p>
+              </div>
+            </div>
+
+            {/* Tengah: Tanggal */}
+            <div className="flex flex-col text-sm text-left md:justify-center md:items-start">
+              <span className="text-muted-foreground mb-1">Created at</span>
+              <div className="flex items-center space-x-2">
+                <CalendarDays className="w-4 h-4 text-green-600" />
+                <span className="font-semibold text-black">{exam.date}</span>
+              </div>
+            </div>
+
+            {/* Kanan: Tombol */}
+            <div className="flex justify-start md:justify-end">
+              <Button className="bg-[#0F0F2D] text-white rounded-full px-6 py-1 text-sm">
+                Details
+              </Button>
+            </div>
+          </div>
+        ))}
       </div>
-
-      {/* Tengah: Tanggal */}
-      <div className="flex flex-col text-sm text-left md:justify-center md:items-start">
-        <span className="text-muted-foreground mb-1">Created at</span>
-        <div className="flex items-center space-x-2">
-          <CalendarDays className="w-4 h-4 text-green-600" />
-          <span className="font-semibold text-black">{exam.date}</span>
-        </div>
-      </div>
-
-      {/* Kanan: Tombol */}
-      <div className="flex justify-start md:justify-end">
-        <Button className="bg-[#0F0F2D] text-white rounded-full px-6 py-1 text-sm">
-          Details
-        </Button>
-      </div>
-    </div>
-  ))}
-</div>
-
     </div>
   );
 }
