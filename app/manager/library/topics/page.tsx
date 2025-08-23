@@ -1,4 +1,15 @@
 "use client";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -23,6 +34,7 @@ import {
   BadgeX,
   BadgeCheck,
   UploadCloud,
+  AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -74,6 +86,10 @@ export default function TopicsPage() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentTopics = topics.slice(startIndex, endIndex);
+
+  const handleDeleteSubject = (topicsTitle: string): void => {
+    console.log(`Deleting subject: ${topicsTitle}`);
+  };
 
   return (
     <div className="p-4 sm:p-2 space-y-6">
@@ -146,7 +162,7 @@ export default function TopicsPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-1 items-center justify-center sm:w-32 sm:flex-shrink-0">
+                <div className="flex items-center justify-between sm:justify-center sm:flex-1 sm:w-32 sm:flex-shrink-0">
                   {topic.certified && (
                     <div className="flex items-center gap-2 text-blue-600">
                       <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
@@ -154,30 +170,125 @@ export default function TopicsPage() {
                           <BadgeCheck />
                         </span>
                       </div>
-                      <span className="text-sm font-medium">CERTIFIED</span>
+                      <span className="text-xs sm:text-sm font-medium">CERTIFIED</span>
                     </div>
                   )}
+
+                  <div className="flex items-center gap-2 sm:hidden">
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                        <AlertDialogHeader className="text-center pb-4">
+                          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                            <AlertTriangle className="h-6 w-6 text-red-600" />
+                          </div>
+                          <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                            Hapus Mata Pelajaran
+                          </AlertDialogTitle>
+                          <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                            Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                            <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                              "{topic.title}"
+                            </span>
+                            ?
+                            <br />
+                            <br />
+                            <span className="text-red-600 font-medium">
+                              Tindakan ini tidak dapat dibatalkan
+                            </span>{" "}
+                            dan akan menghapus mata pelajaran ini secara permanen
+                            dari semua kelas yang terkait.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                          <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                            Batal
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                            onClick={() => handleDeleteSubject(topic.title)}
+                          >
+                            Ya, Hapus Mata Pelajaran
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                    <Link href={"subjects/edit"}>
+                      <Button
+                        variant="default"
+                        size="sm"
+                        className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                      >
+                        <Edit size={14} className="mr-2" />
+                        Edit
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 justify-end sm:justify-center sm:w-32 sm:flex-shrink-0">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="p-2 h-8 w-8 text-gray-400 hover:text-gray-600"
-                  >
-                    <Trash2 size={16} />
-                  </Button>
-                  <Link href={"topics/edit"}>
+                <div className="hidden sm:flex items-center gap-2 sm:ml-auto">
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                      <AlertDialogHeader className="text-center pb-4">
+                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                          <AlertTriangle className="h-6 w-6 text-red-600" />
+                        </div>
+                        <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                          Hapus Mata Pelajaran
+                        </AlertDialogTitle>
+                        <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                          Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                          <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                            "{topic.title}"
+                          </span>
+                          ?
+                          <br />
+                          <br />
+                          <span className="text-red-600 font-medium">
+                            Tindakan ini tidak dapat dibatalkan
+                          </span>{" "}
+                          dan akan menghapus mata pelajaran ini secara permanen
+                          dari semua kelas yang terkait.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                        <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                          Batal
+                        </AlertDialogCancel>
+                        <AlertDialogAction
+                          className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                          onClick={() => handleDeleteSubject(topic.title)}
+                        >
+                          Ya, Hapus Mata Pelajaran
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                  <Link href={"subjects/edit"}>
                     <Button
                       variant="default"
                       size="sm"
-                      asChild
                       className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
                     >
-                      <span className="flex items-center">
-                        <Edit size={14} className="mr-2" />
-                        Edit
-                      </span>
+                      <Edit size={14} className="mr-2" />
+                      Edit
                     </Button>
                   </Link>
                 </div>
@@ -250,7 +361,7 @@ export default function TopicsPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-1 items-center justify-center sm:w-32 sm:flex-shrink-0">
+                <div className="flex items-center justify-between sm:justify-center sm:flex-1 sm:w-32 sm:flex-shrink-0">
                   {topic.certified && (
                     <div className="flex items-center gap-2 text-red-600">
                       <div className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center">
@@ -258,31 +369,125 @@ export default function TopicsPage() {
                           <BadgeX />
                         </span>
                       </div>
-                      <span className="text-sm font-medium">UNCERTIFIED</span>
+                      <span className="text-xs sm:text-sm font-medium">UNCERTIFIED</span>
                     </div>
                   )}
+
+                  <div className="flex items-center gap-2 sm:hidden">
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                        <AlertDialogHeader className="text-center pb-4">
+                          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                            <AlertTriangle className="h-6 w-6 text-red-600" />
+                          </div>
+                          <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                            Hapus Mata Pelajaran
+                          </AlertDialogTitle>
+                          <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                            Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                            <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                              "{topic.title}"
+                            </span>
+                            ?
+                            <br />
+                            <br />
+                            <span className="text-red-600 font-medium">
+                              Tindakan ini tidak dapat dibatalkan
+                            </span>{" "}
+                            dan akan menghapus mata pelajaran ini secara permanen
+                            dari semua kelas yang terkait.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                          <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                            Batal
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                            onClick={() => handleDeleteSubject(topic.title)}
+                          >
+                            Ya, Hapus Mata Pelajaran
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                    <Link href={"subjects/edit"}>
+                      <Button
+                        variant="default"
+                        size="sm"
+                        className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                      >
+                        <Edit size={14} className="mr-2" />
+                        Edit
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
 
-                {/* Right: Actions */}
-                <div className="flex items-center gap-2 justify-end sm:justify-center sm:w-32 sm:flex-shrink-0">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="p-2 h-8 w-8 text-gray-400 hover:text-gray-600"
-                  >
-                    <Trash2 size={16} />
-                  </Button>
-                  <Link href={"topics/edit"}>
+                <div className="hidden sm:flex items-center gap-2 sm:ml-auto">
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                      <AlertDialogHeader className="text-center pb-4">
+                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                          <AlertTriangle className="h-6 w-6 text-red-600" />
+                        </div>
+                        <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                          Hapus Mata Pelajaran
+                        </AlertDialogTitle>
+                        <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                          Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                          <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                            "{topic.title}"
+                          </span>
+                          ?
+                          <br />
+                          <br />
+                          <span className="text-red-600 font-medium">
+                            Tindakan ini tidak dapat dibatalkan
+                          </span>{" "}
+                          dan akan menghapus mata pelajaran ini secara permanen
+                          dari semua kelas yang terkait.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                        <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                          Batal
+                        </AlertDialogCancel>
+                        <AlertDialogAction
+                          className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                          onClick={() => handleDeleteSubject(topic.title)}
+                        >
+                          Ya, Hapus Mata Pelajaran
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                  <Link href={"subjects/edit"}>
                     <Button
                       variant="default"
                       size="sm"
-                      asChild
                       className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
                     >
-                      <span className="flex items-center">
-                        <Edit size={14} className="mr-2" />
-                        Edit
-                      </span>
+                      <Edit size={14} className="mr-2" />
+                      Edit
                     </Button>
                   </Link>
                 </div>

@@ -35,13 +35,25 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
+interface Subject {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  certified: boolean;
+  classrooms: string;
+  teacher: string;
+  teacherAvatar: string;
+  lessonAttached: boolean;
+}
+
 export default function SubjectsPage() {
-  const subjects = [
+  const subjects: Subject[] = [
     {
       id: 1,
       title: "Object Sketching",
       category: "Visual Design",
-      image: "/api/placeholder/140/100",
+      image: `https://source.unsplash.com/140x100/?sketching,drawing`,
       certified: true,
       classrooms: "6.450",
       teacher: "Armin Yeager",
@@ -52,7 +64,7 @@ export default function SubjectsPage() {
       id: 2,
       title: "Digital Domination",
       category: "Business Marketing",
-      image: "/api/placeholder/140/100",
+      image: `https://source.unsplash.com/140x100/?digital,marketing`,
       certified: true,
       classrooms: "6.450",
       teacher: "Galang Vamos",
@@ -63,7 +75,7 @@ export default function SubjectsPage() {
       id: 3,
       title: "Linear Gameplan",
       category: "Mathematics",
-      image: "/api/placeholder/140/100",
+      image: `https://source.unsplash.com/140x100/?mathematics,linear`,
       certified: true,
       classrooms: "6.450",
       teacher: "Sakura Rose",
@@ -74,7 +86,7 @@ export default function SubjectsPage() {
       id: 4,
       title: "Learning Basics HTML",
       category: "Computer Science",
-      image: "/api/placeholder/140/100",
+      image: `https://source.unsplash.com/140x100/?html,coding`,
       certified: true,
       classrooms: "6.450",
       teacher: "Raisa Nur",
@@ -85,7 +97,7 @@ export default function SubjectsPage() {
       id: 5,
       title: "Digital Domination",
       category: "Business Marketing",
-      image: "/api/placeholder/140/100",
+      image: `https://source.unsplash.com/140x100/?business,digital`,
       certified: true,
       classrooms: "6.450",
       teacher: "Karina Mine",
@@ -96,7 +108,7 @@ export default function SubjectsPage() {
       id: 6,
       title: "Digital Domination",
       category: "Business Marketing",
-      image: "/api/placeholder/140/100",
+      image: `https://source.unsplash.com/140x100/?marketing,strategy`,
       certified: true,
       classrooms: "6.450",
       teacher: "Karina Mine",
@@ -105,18 +117,19 @@ export default function SubjectsPage() {
     },
   ];
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage: number = 5;
 
-  const totalPages = Math.ceil(subjects.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentsubjects = subjects.slice(startIndex, endIndex);
+  const totalPages: number = Math.ceil(subjects.length / itemsPerPage);
+  const startIndex: number = (currentPage - 1) * itemsPerPage;
+  const endIndex: number = startIndex + itemsPerPage;
+  const currentsubjects: Subject[] = subjects.slice(startIndex, endIndex);
 
-  const handleDeleteSubject = (subjectId: number, subjectTitle: string) => {
-    // Implement delete logic here
+  const handleDeleteSubject = (
+    subjectId: number,
+    subjectTitle: string
+  ): void => {
     console.log(`Deleting subject: ${subjectTitle} with ID: ${subjectId}`);
-    // You can add your actual delete API call here
   };
 
   return (
@@ -170,99 +183,121 @@ export default function SubjectsPage() {
 
         <TabsContent value="published" className="mt-6">
           <div className="space-y-4">
-            {currentsubjects.map((subject) => (
-              <Card key={subject.id} className="p-4 shadow-sm border border-gray-200">
-                <div className="flex items-center gap-4">
+            {currentsubjects.map((subject: Subject) => (
+              <Card
+                key={subject.id}
+                className="p-4 shadow-sm border border-gray-200"
+              >
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
                   {/* Thumbnail */}
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-16 bg-gray-200 rounded-lg overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                        <span className="text-xs text-gray-600">Image</span>
-                      </div>
+                  <div className="flex-shrink-0 w-full lg:w-auto">
+                    <div className="w-full h-40 lg:w-20 lg:h-16 bg-gray-200 rounded-lg overflow-hidden">
+                      <img
+                        src={subject.image}
+                        alt={subject.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1 min-w-0 w-full">
+                    <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-3 gap-4 lg:relative">
                       <div className="min-w-0">
                         <h3 className="text-lg font-semibold text-gray-900 truncate mb-1">
                           {subject.title}
                         </h3>
-                        <p className="text-sm text-gray-600">{subject.category}</p>
+                        <p className="text-sm text-gray-600">
+                          {subject.category}
+                        </p>
                       </div>
 
-                      <div className="flex-1 flex justify-center  mt-4">
-                        {subject.certified && (
-                          <div className="flex items-center gap-1">
-                            <BadgeCheck className="w-4 h-4 text-blue-600" />
-                            <span className="text-xs font-medium text-blue-600 uppercase">
-                              Certified
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                      <div className="flex flex-col sm:flex-row justify-between lg:justify-center items-start sm:items-center gap-4 lg:flex-1">
+                        <div className="flex justify-center lg:flex-1 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                          {subject.certified && (
+                            <div className="flex items-center gap-1">
+                              <BadgeCheck className="w-4 h-4 text-blue-600" />
+                              <span className="text-xs font-medium text-blue-600 uppercase">
+                                Certified
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                      <div className="flex items-center gap-2 ml-4 mt-2">
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent className="sm:max-w-md">
-                            <AlertDialogHeader className="text-center">
-                              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-                                <AlertTriangle className="h-6 w-6 text-red-600" />
-                              </div>
-                              <AlertDialogTitle className="text-lg font-semibold text-gray-900">
-                                Delete Subject
-                              </AlertDialogTitle>
-                              <AlertDialogDescription className="text-sm text-gray-600 mt-2">
-                                Are you sure you want to delete <span className="font-medium text-gray-900">"{subject.title}"</span>? 
-                                This action cannot be undone and will permanently remove the subject from all classrooms.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter className="gap-3 sm:gap-3">
-                              <AlertDialogCancel className="mt-0 flex-1 border-gray-300 text-gray-700 hover:bg-gray-50">
-                                Cancel
-                              </AlertDialogCancel>
-                              <AlertDialogAction 
-                                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                                onClick={() => handleDeleteSubject(subject.id, subject.title)}
+                        <div className="flex items-center gap-2 sm:ml-auto">
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
                               >
-                                Delete Subject
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                        <Link href={"subjects/edit"}>
-                          <Button
-                            variant="default"
-                            size="sm"
-                            asChild
-                            className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                          >
-                            <span className="flex items-center">
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                              <AlertDialogHeader className="text-center pb-4">
+                                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                                  <AlertTriangle className="h-6 w-6 text-red-600" />
+                                </div>
+                                <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                                  Hapus Mata Pelajaran
+                                </AlertDialogTitle>
+                                <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                                  Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                                  <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                                    "{subject.title}"
+                                  </span>
+                                  ?
+                                  <br />
+                                  <br />
+                                  <span className="text-red-600 font-medium">
+                                    Tindakan ini tidak dapat dibatalkan
+                                  </span>{" "}
+                                  dan akan menghapus mata pelajaran ini secara permanen dari semua kelas yang terkait.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                                <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                                  Batal
+                                </AlertDialogCancel>
+                                <AlertDialogAction
+                                  className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                                  onClick={() =>
+                                    handleDeleteSubject(
+                                      subject.id,
+                                      subject.title
+                                    )
+                                  }
+                                >
+                                  Ya, Hapus Mata Pelajaran
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                          <Link href={"subjects/edit"}>
+                            <Button
+                              variant="default"
+                              size="sm"
+                              className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                            >
                               <Edit size={14} className="mr-2" />
                               Edit
-                            </span>
-                          </Button>
-                        </Link>
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
-                    <hr className="border-gray-200 mb-3" />
+                    <hr className="border-gray-200 mb-3 hidden sm:block" />
 
-                    <div className="flex items-center justify-center gap-40 text-sm text-gray-600">
+                    <div className="hidden sm:grid grid-cols-1 sm:grid-cols-3 lg:grid lg:grid-cols-3 lg:items-center lg:justify-items-center gap-4 lg:gap-8 text-sm text-gray-600 lg:max-w-2xl lg:mx-auto">
                       <div className="flex flex-col items-center">
                         <span className="text-gray-500 mb-1">Classrooms</span>
                         <div className="flex items-center gap-1">
                           <Users className="w-4 h-4 text-orange-500" />
-                          <span className="font-medium">{subject.classrooms}</span>
+                          <span className="font-medium">
+                            {subject.classrooms}
+                          </span>
                         </div>
                       </div>
 
@@ -295,15 +330,15 @@ export default function SubjectsPage() {
                   <PaginationPrevious
                     href="#"
                     onClick={() =>
-                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                      setCurrentPage((prev: number) => Math.max(prev - 1, 1))
                     }
                     className="text-xs sm:text-sm"
                   />
                 </PaginationItem>
 
                 {Array.from({ length: totalPages }).map((_, index) => {
-                  const pageNumber = index + 1;
-                  const isActive = currentPage === pageNumber;
+                  const pageNumber: number = index + 1;
+                  const isActive: boolean = currentPage === pageNumber;
 
                   return (
                     <PaginationItem key={pageNumber}>
@@ -323,7 +358,9 @@ export default function SubjectsPage() {
                   <PaginationNext
                     href="#"
                     onClick={() =>
-                      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                      setCurrentPage((prev: number) =>
+                        Math.min(prev + 1, totalPages)
+                      )
                     }
                     className="text-xs sm:text-sm"
                   />
@@ -335,97 +372,120 @@ export default function SubjectsPage() {
 
         <TabsContent value="deactivated" className="mt-6">
           <div className="space-y-4">
-            {currentsubjects.map((subject) => (
-              <Card key={subject.id} className="p-4 shadow-sm border border-gray-200">
-                <div className="flex items-center gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-16 bg-gray-200 rounded-lg overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                        <span className="text-xs text-gray-600">Image</span>
-                      </div>
+            {currentsubjects.map((subject: Subject) => (
+              <Card
+                key={subject.id}
+                className="p-4 shadow-sm border border-gray-200"
+              >
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
+                  <div className="flex-shrink-0 w-full lg:w-auto">
+                    <div className="w-full h-40 lg:w-20 lg:h-16 bg-gray-200 rounded-lg overflow-hidden">
+                      <img
+                        src={subject.image}
+                        alt={subject.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1 min-w-0 w-full">
+                    <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-3 gap-4 lg:relative">
                       <div className="min-w-0">
                         <h3 className="text-lg font-semibold text-gray-900 truncate mb-1">
                           {subject.title}
                         </h3>
-                        <p className="text-sm text-gray-600">{subject.category}</p>
+                        <p className="text-sm text-gray-600">
+                          {subject.category}
+                        </p>
                       </div>
 
-                      <div className="flex-1 flex justify-center  mt-4">
-                        {subject.certified && (
-                          <div className="flex items-center gap-1">
-                            <BadgeX className="w-4 h-4 text-red-600" />
-                            <span className="text-xs font-medium text-red-600 uppercase">
-                              Uncertified
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                      <div className="flex flex-col sm:flex-row justify-between lg:justify-center items-start sm:items-center gap-4 lg:flex-1">
+                        <div className="flex justify-center lg:flex-1 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+                          {subject.certified && (
+                            <div className="flex items-center gap-1">
+                              <BadgeX className="w-4 h-4 text-red-600" />
+                              <span className="text-xs font-medium text-red-600 uppercase">
+                                Uncertified
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                      <div className="flex items-center gap-2 ml-4 mt-2">
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent className="sm:max-w-md">
-                            <AlertDialogHeader className="text-center">
-                              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-                                <AlertTriangle className="h-6 w-6 text-red-600" />
-                              </div>
-                              <AlertDialogTitle className="text-lg font-semibold text-gray-900">
-                                Delete Subject
-                              </AlertDialogTitle>
-                              <AlertDialogDescription className="text-sm text-gray-600 mt-2">
-                                Are you sure you want to delete <span className="font-medium text-gray-900">"{subject.title}"</span>? 
-                                This action cannot be undone and will permanently remove the subject from all classrooms.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter className="gap-3 sm:gap-3">
-                              <AlertDialogCancel className="mt-0 flex-1 border-gray-300 text-gray-700 hover:bg-gray-50">
-                                Cancel
-                              </AlertDialogCancel>
-                              <AlertDialogAction 
-                                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                                onClick={() => handleDeleteSubject(subject.id, subject.title)}
+                        <div className="flex items-center gap-2 sm:ml-auto">
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
                               >
-                                Delete Subject
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                        <Link href={"subjects/edit"}>
-                          <Button
-                            variant="default"
-                            size="sm"
-                            asChild
-                            className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                          >
-                            <span className="flex items-center">
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                              <AlertDialogHeader className="text-center pb-4">
+                                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                                  <AlertTriangle className="h-6 w-6 text-red-600" />
+                                </div>
+                                <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                                  Hapus Mata Pelajaran
+                                </AlertDialogTitle>
+                                <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                                  Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                                  <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                                    "{subject.title}"
+                                  </span>
+                                  ?
+                                  <br />
+                                  <br />
+                                  <span className="text-red-600 font-medium">
+                                    Tindakan ini tidak dapat dibatalkan
+                                  </span>{" "}
+                                  dan akan menghapus mata pelajaran ini secara permanen dari semua kelas yang terkait.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                                <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                                  Batal
+                                </AlertDialogCancel>
+                                <AlertDialogAction
+                                  className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                                  onClick={() =>
+                                    handleDeleteSubject(
+                                      subject.id,
+                                      subject.title
+                                    )
+                                  }
+                                >
+                                  Ya, Hapus Mata Pelajaran
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                          <Link href={"subjects/edit"}>
+                            <Button
+                              variant="default"
+                              size="sm"
+                              className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                            >
                               <Edit size={14} className="mr-2" />
                               Edit
-                            </span>
-                          </Button>
-                        </Link>
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
 
-                    <hr className="border-gray-200 mb-3" />
-                    <div className="flex items-center justify-center gap-40 text-sm text-gray-600">
+                    <hr className="border-gray-200 mb-3 hidden sm:block" />
+
+                    <div className="hidden sm:grid grid-cols-1 sm:grid-cols-3 lg:grid lg:grid-cols-3 lg:items-center lg:justify-items-center gap-4 lg:gap-8 text-sm text-gray-600 lg:max-w-2xl lg:mx-auto">
                       <div className="flex flex-col items-center">
                         <span className="text-gray-500 mb-1">Classrooms</span>
                         <div className="flex items-center gap-1">
                           <Users className="w-4 h-4 text-orange-500" />
-                          <span className="font-medium">{subject.classrooms}</span>
+                          <span className="font-medium">
+                            {subject.classrooms}
+                          </span>
                         </div>
                       </div>
 
@@ -458,15 +518,15 @@ export default function SubjectsPage() {
                   <PaginationPrevious
                     href="#"
                     onClick={() =>
-                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                      setCurrentPage((prev: number) => Math.max(prev - 1, 1))
                     }
                     className="text-xs sm:text-sm"
                   />
                 </PaginationItem>
 
                 {Array.from({ length: totalPages }).map((_, index) => {
-                  const pageNumber = index + 1;
-                  const isActive = currentPage === pageNumber;
+                  const pageNumber: number = index + 1;
+                  const isActive: boolean = currentPage === pageNumber;
 
                   return (
                     <PaginationItem key={pageNumber}>
@@ -486,7 +546,9 @@ export default function SubjectsPage() {
                   <PaginationNext
                     href="#"
                     onClick={() =>
-                      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                      setCurrentPage((prev: number) =>
+                        Math.min(prev + 1, totalPages)
+                      )
                     }
                     className="text-xs sm:text-sm"
                   />
