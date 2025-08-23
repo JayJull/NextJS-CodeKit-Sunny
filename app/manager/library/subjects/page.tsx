@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 interface Subject {
   id: number;
@@ -43,76 +44,75 @@ interface Subject {
   certified: boolean;
   classrooms: string;
   teacher: string;
-  teacherAvatar: string;
   lessonAttached: boolean;
 }
 
 export default function SubjectsPage() {
-  const subjects: Subject[] = [
+  const subjects = [
     {
       id: 1,
       title: "Object Sketching",
       category: "Visual Design",
-      image: `https://source.unsplash.com/140x100/?sketching,drawing`,
+      image:
+        "https://plus.unsplash.com/premium_photo-1681494761177-68de49e52b60?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMyfHx8ZW58MHx8fHx8&ixlib=rb-4.0.3&q=60&w=3000",
       certified: true,
       classrooms: "6.450",
       teacher: "Armin Yeager",
-      teacherAvatar: "/api/placeholder/32/32",
       lessonAttached: true,
     },
     {
       id: 2,
       title: "Digital Domination",
       category: "Business Marketing",
-      image: `https://source.unsplash.com/140x100/?digital,marketing`,
+      image:
+        "https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-4.0.3&q=80&w=2000",
       certified: true,
       classrooms: "6.450",
       teacher: "Galang Vamos",
-      teacherAvatar: "/api/placeholder/32/32",
       lessonAttached: true,
     },
     {
       id: 3,
       title: "Linear Gameplan",
       category: "Mathematics",
-      image: `https://source.unsplash.com/140x100/?mathematics,linear`,
+      image:
+        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&q=80&w=2000",
       certified: true,
       classrooms: "6.450",
       teacher: "Sakura Rose",
-      teacherAvatar: "/api/placeholder/32/32",
       lessonAttached: true,
     },
     {
       id: 4,
       title: "Learning Basics HTML",
       category: "Computer Science",
-      image: `https://source.unsplash.com/140x100/?html,coding`,
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&q=80&w=2000",
       certified: true,
       classrooms: "6.450",
       teacher: "Raisa Nur",
-      teacherAvatar: "/api/placeholder/32/32",
       lessonAttached: true,
     },
     {
       id: 5,
-      title: "Digital Domination",
+      title: "Business Strategy",
       category: "Business Marketing",
-      image: `https://source.unsplash.com/140x100/?business,digital`,
+      image:
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&q=80&w=2000",
       certified: true,
       classrooms: "6.450",
       teacher: "Karina Mine",
-      teacherAvatar: "/api/placeholder/32/32",
       lessonAttached: true,
     },
     {
       id: 6,
-      title: "Digital Domination",
+      title: "Marketing Insights",
       category: "Business Marketing",
-      image: `https://source.unsplash.com/140x100/?marketing,strategy`,
+      image:
+        "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&q=80&w=2000",
       certified: true,
       classrooms: "6.450",
       teacher: "Karina Mine",
-      teacherAvatar: "/api/placeholder/32/32",
       lessonAttached: true,
     },
   ];
@@ -189,13 +189,14 @@ export default function SubjectsPage() {
                 className="p-4 shadow-sm border border-gray-200"
               >
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
-                  {/* Thumbnail */}
                   <div className="flex-shrink-0 w-full lg:w-auto">
-                    <div className="w-full h-40 lg:w-20 lg:h-16 bg-gray-200 rounded-lg overflow-hidden">
-                      <img
+                    <div className="w-full h-48 lg:w-32 lg:h-24 bg-gray-200 rounded-lg overflow-hidden relative">
+                      <Image
                         src={subject.image}
                         alt={subject.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 300px"
+                        className="object-cover"
                       />
                     </div>
                   </div>
@@ -243,7 +244,8 @@ export default function SubjectsPage() {
                                   Hapus Mata Pelajaran
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
-                                  Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                                  Apakah Anda yakin ingin menghapus mata
+                                  pelajaran{" "}
                                   <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
                                     "{subject.title}"
                                   </span>
@@ -253,7 +255,8 @@ export default function SubjectsPage() {
                                   <span className="text-red-600 font-medium">
                                     Tindakan ini tidak dapat dibatalkan
                                   </span>{" "}
-                                  dan akan menghapus mata pelajaran ini secara permanen dari semua kelas yang terkait.
+                                  dan akan menghapus mata pelajaran ini secara
+                                  permanen dari semua kelas yang terkait.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
@@ -304,9 +307,6 @@ export default function SubjectsPage() {
                       <div className="flex flex-col items-center">
                         <span className="text-gray-500 mb-1">Teacher</span>
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-gray-300 rounded-full overflow-hidden">
-                            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-400"></div>
-                          </div>
                           <span className="font-medium">{subject.teacher}</span>
                         </div>
                       </div>
@@ -379,11 +379,13 @@ export default function SubjectsPage() {
               >
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
                   <div className="flex-shrink-0 w-full lg:w-auto">
-                    <div className="w-full h-40 lg:w-20 lg:h-16 bg-gray-200 rounded-lg overflow-hidden">
-                      <img
+                    <div className="w-full h-48 lg:w-32 lg:h-24 bg-gray-200 rounded-lg overflow-hidden relative">
+                      <Image
                         src={subject.image}
                         alt={subject.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 300px"
+                        className="object-cover"
                       />
                     </div>
                   </div>
@@ -431,7 +433,8 @@ export default function SubjectsPage() {
                                   Hapus Mata Pelajaran
                                 </AlertDialogTitle>
                                 <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
-                                  Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                                  Apakah Anda yakin ingin menghapus mata
+                                  pelajaran{" "}
                                   <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
                                     "{subject.title}"
                                   </span>
@@ -441,7 +444,8 @@ export default function SubjectsPage() {
                                   <span className="text-red-600 font-medium">
                                     Tindakan ini tidak dapat dibatalkan
                                   </span>{" "}
-                                  dan akan menghapus mata pelajaran ini secara permanen dari semua kelas yang terkait.
+                                  dan akan menghapus mata pelajaran ini secara
+                                  permanen dari semua kelas yang terkait.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
@@ -492,9 +496,6 @@ export default function SubjectsPage() {
                       <div className="flex flex-col items-center">
                         <span className="text-gray-500 mb-1">Teacher</span>
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 bg-gray-300 rounded-full overflow-hidden">
-                            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-400"></div>
-                          </div>
                           <span className="font-medium">{subject.teacher}</span>
                         </div>
                       </div>
