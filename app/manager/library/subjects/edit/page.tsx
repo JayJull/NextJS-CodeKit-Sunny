@@ -4,12 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  ArrowLeft,
-  Sparkles,
-  Image,
-  BadgeCheck,
-} from "lucide-react";
+import { ArrowLeft, Sparkles, Image, BadgeCheck } from "lucide-react";
+import Link from "next/link";
 
 export default function EditSubject() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -103,20 +99,20 @@ export default function EditSubject() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="p-4 sm:p-6 space-y-6">
+    <div className="min-h-screen">
+      <div className="p-4 sm:p-2 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
               Add New Subjects
             </h1>
-            <a
+            <Link
               href="/manager/library/subjects"
               className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
             >
               <ArrowLeft className="w-4 h-4" />
               Manage Subjects
-            </a>
+            </Link>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Button
@@ -128,13 +124,14 @@ export default function EditSubject() {
             </Button>
           </div>
         </div>
-
+      </div>
+      <div className="mt-5 sm:mt-6 space-y-6">
         <div>
-          <Card className="bg-white border border-gray-200 shadow-sm">
-            <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl text-gray-900 bg-white">
+          <Card className="bg-white border border-gray-200 shadow-sm rounded-2xl">
+            <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl text-gray-900">
               Complete the Form
             </CardTitle>
-            <CardContent className="p-4 sm:p-6 space-y-6 sm:space-y-8 bg-white">
+            <CardContent className="p-4 sm:p-6 space-y-6 sm:space-y-8">
               {/* Topic Image Section */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                 <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-24 sm:flex-shrink-0">

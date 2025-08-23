@@ -169,7 +169,20 @@ export const managerMenuItems: MenuItem[] = [
         id: "members",
         label: "Members",
         icon: <Users className="h-4 w-4" />,
-        href: "/manager/members",
+        children: [
+          {
+            id: "teachers",
+            label: "Teachers",
+            icon: <div className="w-2 h-2 bg-gray-400 rounded-full" />,
+            href: "/manager/member/teachers",
+          },
+          {
+            id: "students",
+            label: "Students",
+            icon: <div className="w-2 h-2 bg-gray-400 rounded-full" />,
+            href: "/manager/member/students",
+          },
+        ],
       },
       {
         id: "users",

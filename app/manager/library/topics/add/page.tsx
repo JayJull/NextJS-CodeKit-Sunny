@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Sparkles, Image, CirclePlus, Pocket } from "lucide-react";
+import {
+  ArrowLeft,
+  Sparkles,
+  Image,
+  CirclePlus,
+  Pocket,
+  Link,
+} from "lucide-react";
 
 export default function AddTopic() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -42,13 +49,13 @@ export default function AddTopic() {
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
             Add New Topics
           </h1>
-          <a
+          <Link
             href="/manager/library/topics"
             className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
             Manage Topics
-          </a>
+          </Link>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
           <Button
@@ -63,7 +70,9 @@ export default function AddTopic() {
 
       <div>
         <Card>
-          <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl">Complete the Form</CardTitle>
+          <CardTitle className="p-4 sm:p-6 pb-0 text-lg sm:text-xl">
+            Complete the Form
+          </CardTitle>
           <CardContent className="p-4 sm:p-6 space-y-6 sm:space-y-8">
             {/* Topic Image Section */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
