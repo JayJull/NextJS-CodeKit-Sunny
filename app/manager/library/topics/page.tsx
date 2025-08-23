@@ -35,6 +35,7 @@ import {
   BadgeCheck,
   UploadCloud,
   AlertTriangle,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
 import { JSX, useState } from "react";
@@ -46,6 +47,22 @@ interface Topic {
   certified: boolean;
   status: "published" | "deactivated";
 }
+
+const EmptyState = () => {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 px-4">
+      <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center mb-6">
+        <FileText className="w-8 h-8 text-gray-400" />
+      </div>
+      <h3 className="text-lg font-medium text-gray-900 mb-2">
+        It looks like you don't have any data yet.
+      </h3>
+      <p className="text-sm text-gray-500 text-center max-w-sm">
+        Start by adding your first member to see them appear here.
+      </p>
+    </div>
+  );
+};
 
 export default function TopicsPage() {
   const topics: Topic[] = [
@@ -165,432 +182,442 @@ export default function TopicsPage() {
 
         <TabsContent value="published" className="mt-6">
           <div className="space-y-4">
-            {currentTopics.map((topic, idx) => (
-              <Card
-                key={idx}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6 shadow-sm border border-gray-200"
-              >
-                <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    {topic.icon}
-                  </div>
-                  <div className="flex flex-col justify-center flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold text-gray-900 truncate">
-                      {topic.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
-                      <FileText size={14} />
-                      <span>{topic.subjects}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between sm:justify-center sm:flex-1 sm:w-32 sm:flex-shrink-0">
-                  {topic.certified && (
-                    <div className="flex items-center gap-2 text-blue-600">
-                      <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm">
-                          <BadgeCheck />
-                        </span>
+            {currentTopics.length === 0 ? (
+              <EmptyState />
+            ) : (
+              <>
+                {currentTopics.map((topic, idx) => (
+                  <Card
+                    key={idx}
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6 shadow-sm border border-gray-200"
+                  >
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        {topic.icon}
                       </div>
-                      <span className="text-xs sm:text-sm font-medium">
-                        CERTIFIED
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="flex items-center gap-2 sm:hidden">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
-                        <AlertDialogHeader className="text-center pb-4">
-                          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-                            <AlertTriangle className="h-6 w-6 text-red-600" />
-                          </div>
-                          <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
-                            Hapus Mata Pelajaran
-                          </AlertDialogTitle>
-                          <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
-                            Apakah Anda yakin ingin menghapus mata pelajaran{" "}
-                            <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
-                              "{topic.title}"
-                            </span>
-                            ?
-                            <br />
-                            <br />
-                            <span className="text-red-600 font-medium">
-                              Tindakan ini tidak dapat dibatalkan
-                            </span>{" "}
-                            dan akan menghapus mata pelajaran ini secara
-                            permanen dari semua kelas yang terkait.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
-                          <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
-                            Batal
-                          </AlertDialogCancel>
-                          <AlertDialogAction
-                            className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
-                            onClick={() => handleDeleteSubject(topic.title)}
-                          >
-                            Ya, Hapus Mata Pelajaran
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                    <Link href={"topics/edit"}>
-                      <Button
-                        variant="default"
-                        size="sm"
-                        className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                      >
-                        <Edit size={14} className="mr-2" />
-                        Edit
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="hidden sm:flex items-center gap-2 sm:ml-auto">
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
-                      <AlertDialogHeader className="text-center pb-4">
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-                          <AlertTriangle className="h-6 w-6 text-red-600" />
+                      <div className="flex flex-col justify-center flex-1 min-w-0">
+                        <h3 className="text-lg font-semibold text-gray-900 truncate">
+                          {topic.title}
+                        </h3>
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                          <FileText size={14} />
+                          <span>{topic.subjects}</span>
                         </div>
-                        <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
-                          Hapus Mata Pelajaran
-                        </AlertDialogTitle>
-                        <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
-                          Apakah Anda yakin ingin menghapus mata pelajaran{" "}
-                          <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
-                            "{topic.title}"
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between sm:justify-center sm:flex-1 sm:w-32 sm:flex-shrink-0">
+                      {topic.certified && (
+                        <div className="flex items-center gap-2 text-blue-600">
+                          <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center">
+                            <span className="text-white text-sm">
+                              <BadgeCheck />
+                            </span>
+                          </div>
+                          <span className="text-xs sm:text-sm font-medium">
+                            CERTIFIED
                           </span>
-                          ?
-                          <br />
-                          <br />
-                          <span className="text-red-600 font-medium">
-                            Tindakan ini tidak dapat dibatalkan
-                          </span>{" "}
-                          dan akan menghapus mata pelajaran ini secara permanen
-                          dari semua kelas yang terkait.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
-                        <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
-                          Batal
-                        </AlertDialogCancel>
-                        <AlertDialogAction
-                          className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
-                          onClick={() => handleDeleteSubject(topic.title)}
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-2 sm:hidden">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                            <AlertDialogHeader className="text-center pb-4">
+                              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                                <AlertTriangle className="h-6 w-6 text-red-600" />
+                              </div>
+                              <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                                Hapus Mata Pelajaran
+                              </AlertDialogTitle>
+                              <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                                Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                                <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                                  "{topic.title}"
+                                </span>
+                                ?
+                                <br />
+                                <br />
+                                <span className="text-red-600 font-medium">
+                                  Tindakan ini tidak dapat dibatalkan
+                                </span>{" "}
+                                dan akan menghapus mata pelajaran ini secara
+                                permanen dari semua kelas yang terkait.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                              <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                                Batal
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                                onClick={() => handleDeleteSubject(topic.title)}
+                              >
+                                Ya, Hapus Mata Pelajaran
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                        <Link href={"topics/edit"}>
+                          <Button
+                            variant="default"
+                            size="sm"
+                            className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                          >
+                            <Edit size={14} className="mr-2" />
+                            Edit
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="hidden sm:flex items-center gap-2 sm:ml-auto">
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                          <AlertDialogHeader className="text-center pb-4">
+                            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                              <AlertTriangle className="h-6 w-6 text-red-600" />
+                            </div>
+                            <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                              Hapus Mata Pelajaran
+                            </AlertDialogTitle>
+                            <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                              Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                              <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                                "{topic.title}"
+                              </span>
+                              ?
+                              <br />
+                              <br />
+                              <span className="text-red-600 font-medium">
+                                Tindakan ini tidak dapat dibatalkan
+                              </span>{" "}
+                              dan akan menghapus mata pelajaran ini secara
+                              permanen dari semua kelas yang terkait.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                            <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                              Batal
+                            </AlertDialogCancel>
+                            <AlertDialogAction
+                              className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                              onClick={() => handleDeleteSubject(topic.title)}
+                            >
+                              Ya, Hapus Mata Pelajaran
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                      <Link href={"topics/edit"}>
+                        <Button
+                          variant="default"
+                          size="sm"
+                          className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
                         >
-                          Ya, Hapus Mata Pelajaran
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                  <Link href={"topics/edit"}>
-                    <Button
-                      variant="default"
-                      size="sm"
-                      className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                    >
-                      <Edit size={14} className="mr-2" />
-                      Edit
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-            ))}
+                          <Edit size={14} className="mr-2" />
+                          Edit
+                        </Button>
+                      </Link>
+                    </div>
+                  </Card>
+                ))}
 
-            {totalPages > 1 && (
-              <Pagination className="mt-8 justify-start">
-                <PaginationContent className="flex-wrap gap-1">
-                  <PaginationItem>
-                    <PaginationPrevious
-                      onClick={() =>
-                        setCurrentPage((prev: number) => Math.max(prev - 1, 1))
-                      }
-                      className={`text-xs sm:text-sm ${
-                        currentPage === 1
-                          ? "pointer-events-none opacity-50"
-                          : "cursor-pointer"
-                      }`}
-                    />
-                  </PaginationItem>
-
-                  {Array.from({ length: totalPages }).map((_, index) => {
-                    const pageNumber: number = index + 1;
-                    const isActive: boolean = currentPage === pageNumber;
-
-                    return (
-                      <PaginationItem key={pageNumber}>
-                        <PaginationLink
-                          onClick={() => setCurrentPage(pageNumber)}
-                          isActive={isActive}
-                          className={`text-xs sm:text-sm w-8 h-8 sm:w-10 sm:h-10 cursor-pointer ${
-                            isActive
-                              ? "bg-gray-900 text-white hover:bg-gray-800"
-                              : "hover:bg-gray-100"
+                {totalPages > 1 && (
+                  <Pagination className="mt-8 justify-start">
+                    <PaginationContent className="flex-wrap gap-1">
+                      <PaginationItem>
+                        <PaginationPrevious
+                          onClick={() =>
+                            setCurrentPage((prev: number) =>
+                              Math.max(prev - 1, 1)
+                            )
+                          }
+                          className={`text-xs sm:text-sm ${
+                            currentPage === 1
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
                           }`}
-                        >
-                          {pageNumber}
-                        </PaginationLink>
+                        />
                       </PaginationItem>
-                    );
-                  })}
 
-                  <PaginationItem>
-                    <PaginationNext
-                      onClick={() =>
-                        setCurrentPage((prev: number) =>
-                          Math.min(prev + 1, totalPages)
-                        )
-                      }
-                      className={`text-xs sm:text-sm ${
-                        currentPage === totalPages
-                          ? "pointer-events-none opacity-50"
-                          : "cursor-pointer"
-                      }`}
-                    />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
+                      {Array.from({ length: totalPages }).map((_, index) => {
+                        const pageNumber: number = index + 1;
+                        const isActive: boolean = currentPage === pageNumber;
+
+                        return (
+                          <PaginationItem key={pageNumber}>
+                            <PaginationLink
+                              onClick={() => setCurrentPage(pageNumber)}
+                              isActive={isActive}
+                              className={`text-xs sm:text-sm w-8 h-8 sm:w-10 sm:h-10 cursor-pointer ${
+                                isActive
+                                  ? "bg-gray-900 text-white hover:bg-gray-800"
+                                  : "hover:bg-gray-100"
+                              }`}
+                            >
+                              {pageNumber}
+                            </PaginationLink>
+                          </PaginationItem>
+                        );
+                      })}
+
+                      <PaginationItem>
+                        <PaginationNext
+                          onClick={() =>
+                            setCurrentPage((prev: number) =>
+                              Math.min(prev + 1, totalPages)
+                            )
+                          }
+                          className={`text-xs sm:text-sm ${
+                            currentPage === totalPages
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
+                          }`}
+                        />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                )}
+              </>
             )}
           </div>
         </TabsContent>
 
         <TabsContent value="deactivated" className="mt-6">
           <div className="space-y-4">
-            {currentTopics.map((topic, idx) => (
-              <Card
-                key={idx}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6 shadow-sm border border-gray-200 opacity-75"
-              >
-                <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 grayscale">
-                    {topic.icon}
-                  </div>
-                  <div className="flex flex-col justify-center flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold text-gray-900 truncate">
-                      {topic.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
-                      <FileText size={14} />
-                      <span>{topic.subjects}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between sm:justify-center sm:flex-1 sm:w-32 sm:flex-shrink-0">
-                  <div className="flex items-center gap-2 text-red-600">
-                    <div className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center">
-                      <span className="text-white text-sm">
-                        <BadgeX />
-                      </span>
-                    </div>
-                    <span className="text-xs sm:text-sm font-medium">
-                      UNCERTIFIED
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 sm:hidden">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
-                        <AlertDialogHeader className="text-center pb-4">
-                          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-                            <AlertTriangle className="h-6 w-6 text-red-600" />
-                          </div>
-                          <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
-                            Hapus Mata Pelajaran
-                          </AlertDialogTitle>
-                          <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
-                            Apakah Anda yakin ingin menghapus mata pelajaran{" "}
-                            <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
-                              "{topic.title}"
-                            </span>
-                            ?
-                            <br />
-                            <br />
-                            <span className="text-red-600 font-medium">
-                              Tindakan ini tidak dapat dibatalkan
-                            </span>{" "}
-                            dan akan menghapus mata pelajaran ini secara
-                            permanen dari semua kelas yang terkait.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
-                          <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
-                            Batal
-                          </AlertDialogCancel>
-                          <AlertDialogAction
-                            className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
-                            onClick={() => handleDeleteSubject(topic.title)}
-                          >
-                            Ya, Hapus Mata Pelajaran
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                    <Link href={"subjects/edit"}>
-                      <Button
-                        variant="default"
-                        size="sm"
-                        className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                      >
-                        <Edit size={14} className="mr-2" />
-                        Edit
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="hidden sm:flex items-center gap-2 sm:ml-auto">
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
-                      <AlertDialogHeader className="text-center pb-4">
-                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
-                          <AlertTriangle className="h-6 w-6 text-red-600" />
+            {currentTopics.length === 0 ? (
+              <EmptyState />
+            ) : (
+              <>
+                {currentTopics.map((topic, idx) => (
+                  <Card
+                    key={idx}
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-6 shadow-sm border border-gray-200 opacity-75"
+                  >
+                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 grayscale">
+                        {topic.icon}
+                      </div>
+                      <div className="flex flex-col justify-center flex-1 min-w-0">
+                        <h3 className="text-lg font-semibold text-gray-900 truncate">
+                          {topic.title}
+                        </h3>
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
+                          <FileText size={14} />
+                          <span>{topic.subjects}</span>
                         </div>
-                        <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
-                          Hapus Mata Pelajaran
-                        </AlertDialogTitle>
-                        <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
-                          Apakah Anda yakin ingin menghapus mata pelajaran{" "}
-                          <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
-                            "{topic.title}"
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between sm:justify-center sm:flex-1 sm:w-32 sm:flex-shrink-0">
+                      <div className="flex items-center gap-2 text-red-600">
+                        <div className="w-4 h-4 bg-red-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-sm">
+                            <BadgeX />
                           </span>
-                          ?
-                          <br />
-                          <br />
-                          <span className="text-red-600 font-medium">
-                            Tindakan ini tidak dapat dibatalkan
-                          </span>{" "}
-                          dan akan menghapus mata pelajaran ini secara permanen
-                          dari semua kelas yang terkait.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
-                        <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
-                          Batal
-                        </AlertDialogCancel>
-                        <AlertDialogAction
-                          className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
-                          onClick={() => handleDeleteSubject(topic.title)}
+                        </div>
+                        <span className="text-xs sm:text-sm font-medium">
+                          UNCERTIFIED
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2 sm:hidden">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                            <AlertDialogHeader className="text-center pb-4">
+                              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                                <AlertTriangle className="h-6 w-6 text-red-600" />
+                              </div>
+                              <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                                Hapus Mata Pelajaran
+                              </AlertDialogTitle>
+                              <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                                Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                                <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                                  "{topic.title}"
+                                </span>
+                                ?
+                                <br />
+                                <br />
+                                <span className="text-red-600 font-medium">
+                                  Tindakan ini tidak dapat dibatalkan
+                                </span>{" "}
+                                dan akan menghapus mata pelajaran ini secara
+                                permanen dari semua kelas yang terkait.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                              <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                                Batal
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                                onClick={() => handleDeleteSubject(topic.title)}
+                              >
+                                Ya, Hapus Mata Pelajaran
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                        <Link href={"topics/edit"}>
+                          <Button
+                            variant="default"
+                            size="sm"
+                            className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                          >
+                            <Edit size={14} className="mr-2" />
+                            Edit
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="hidden sm:flex items-center gap-2 sm:ml-auto">
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="p-2 h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent className="max-w-md mx-auto bg-white rounded-lg shadow-xl border">
+                          <AlertDialogHeader className="text-center pb-4">
+                            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100 mb-4">
+                              <AlertTriangle className="h-6 w-6 text-red-600" />
+                            </div>
+                            <AlertDialogTitle className="text-xl font-semibold text-gray-900 mb-2">
+                              Hapus Mata Pelajaran
+                            </AlertDialogTitle>
+                            <AlertDialogDescription className="text-sm text-gray-600 leading-relaxed">
+                              Apakah Anda yakin ingin menghapus mata pelajaran{" "}
+                              <span className="font-semibold text-gray-900 inline-block px-2 py-1 bg-gray-100 rounded">
+                                "{topic.title}"
+                              </span>
+                              ?
+                              <br />
+                              <br />
+                              <span className="text-red-600 font-medium">
+                                Tindakan ini tidak dapat dibatalkan
+                              </span>{" "}
+                              dan akan menghapus mata pelajaran ini secara
+                              permanen dari semua kelas yang terkait.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+                            <AlertDialogCancel className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 border-0 rounded-lg py-2.5 font-medium">
+                              Batal
+                            </AlertDialogCancel>
+                            <AlertDialogAction
+                              className="flex-1 bg-red-600 hover:bg-red-700 text-white border-0 rounded-lg py-2.5 font-medium"
+                              onClick={() => handleDeleteSubject(topic.title)}
+                            >
+                              Ya, Hapus Mata Pelajaran
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                      <Link href={"topics/edit"}>
+                        <Button
+                          variant="default"
+                          size="sm"
+                          className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
                         >
-                          Ya, Hapus Mata Pelajaran
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                  <Link href={"subjects/edit"}>
-                    <Button
-                      variant="default"
-                      size="sm"
-                      className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                    >
-                      <Edit size={14} className="mr-2" />
-                      Edit
-                    </Button>
-                  </Link>
-                </div>
-              </Card>
-            ))}
+                          <Edit size={14} className="mr-2" />
+                          Edit
+                        </Button>
+                      </Link>
+                    </div>
+                  </Card>
+                ))}
 
-            {currentTopics.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500">No deactivated topics found.</p>
-              </div>
-            )}
-
-            {totalPages > 1 && (
-              <Pagination className="mt-8 justify-start">
-                <PaginationContent className="flex-wrap gap-1">
-                  <PaginationItem>
-                    <PaginationPrevious
-                      onClick={() =>
-                        setCurrentPage((prev: number) => Math.max(prev - 1, 1))
-                      }
-                      className={`text-xs sm:text-sm ${
-                        currentPage === 1
-                          ? "pointer-events-none opacity-50"
-                          : "cursor-pointer"
-                      }`}
-                    />
-                  </PaginationItem>
-
-                  {Array.from({ length: totalPages }).map((_, index) => {
-                    const pageNumber: number = index + 1;
-                    const isActive: boolean = currentPage === pageNumber;
-
-                    return (
-                      <PaginationItem key={pageNumber}>
-                        <PaginationLink
-                          onClick={() => setCurrentPage(pageNumber)}
-                          isActive={isActive}
-                          className={`text-xs sm:text-sm w-8 h-8 sm:w-10 sm:h-10 cursor-pointer ${
-                            isActive
-                              ? "bg-gray-900 text-white hover:bg-gray-800"
-                              : "hover:bg-gray-100"
+                {totalPages > 1 && (
+                  <Pagination className="mt-8 justify-start">
+                    <PaginationContent className="flex-wrap gap-1">
+                      <PaginationItem>
+                        <PaginationPrevious
+                          onClick={() =>
+                            setCurrentPage((prev: number) =>
+                              Math.max(prev - 1, 1)
+                            )
+                          }
+                          className={`text-xs sm:text-sm ${
+                            currentPage === 1
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
                           }`}
-                        >
-                          {pageNumber}
-                        </PaginationLink>
+                        />
                       </PaginationItem>
-                    );
-                  })}
 
-                  <PaginationItem>
-                    <PaginationNext
-                      onClick={() =>
-                        setCurrentPage((prev: number) =>
-                          Math.min(prev + 1, totalPages)
-                        )
-                      }
-                      className={`text-xs sm:text-sm ${
-                        currentPage === totalPages
-                          ? "pointer-events-none opacity-50"
-                          : "cursor-pointer"
-                      }`}
-                    />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
+                      {Array.from({ length: totalPages }).map((_, index) => {
+                        const pageNumber: number = index + 1;
+                        const isActive: boolean = currentPage === pageNumber;
+
+                        return (
+                          <PaginationItem key={pageNumber}>
+                            <PaginationLink
+                              onClick={() => setCurrentPage(pageNumber)}
+                              isActive={isActive}
+                              className={`text-xs sm:text-sm w-8 h-8 sm:w-10 sm:h-10 cursor-pointer ${
+                                isActive
+                                  ? "bg-gray-900 text-white hover:bg-gray-800"
+                                  : "hover:bg-gray-100"
+                              }`}
+                            >
+                              {pageNumber}
+                            </PaginationLink>
+                          </PaginationItem>
+                        );
+                      })}
+
+                      <PaginationItem>
+                        <PaginationNext
+                          onClick={() =>
+                            setCurrentPage((prev: number) =>
+                              Math.min(prev + 1, totalPages)
+                            )
+                          }
+                          className={`text-xs sm:text-sm ${
+                            currentPage === totalPages
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
+                          }`}
+                        />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                )}
+              </>
             )}
           </div>
         </TabsContent>

@@ -10,8 +10,8 @@ import {
   Image,
   CirclePlus,
   Pocket,
-  Link,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function AddTopic() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
