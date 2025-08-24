@@ -163,7 +163,20 @@ export const managerMenuItems: MenuItem[] = [
         id: "school",
         label: "School",
         icon: <School className="h-4 w-4" />,
-        href: "/manager/school",
+        children: [
+          {
+            id: "grades",
+            label: "Grades",
+            icon: <div className="w-2 h-2 bg-gray-400 rounded-full" />,
+            href: "/manager/school/grades",
+          },
+          {
+            id: "classrooms",
+            label: "Classrooms",
+            icon: <div className="w-2 h-2 bg-gray-400 rounded-full" />,
+            href: "/manager/school/classrooms",
+          },
+        ],
       },
       {
         id: "members",
