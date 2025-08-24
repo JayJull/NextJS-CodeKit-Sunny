@@ -130,19 +130,15 @@ export default function ClassroomPage() {
   const endIndex = startIndex + itemsPerPage;
   const currentTopics = filteredTopics.slice(startIndex, endIndex);
 
-  const handleDeleteSubject = (topicsTitle: string): void => {
-    console.log(`Deleting subject: ${topicsTitle}`);
-  };
-
   return (
     <div className="p-4 sm:p-2 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-            Manage School Grades
+            Manage Classroom
           </h1>
           <p className="text-sm text-gray-500 mt-1">
-            View & update your school grades
+            View & update your classrooms
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
