@@ -25,15 +25,17 @@ const transactions = [
 ];
 
 export default function page() {
-  const fileInputRef = useRef(null);
-  const [file, setFile] = useState(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<File | null>(null);
 
   const handleButtonClick = () => {
     fileInputRef.current?.click(); // buka file picker
   };
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
+  interface FileChangeEvent extends React.ChangeEvent<HTMLInputElement> {}
+
+  const handleFileChange = (e: FileChangeEvent) => {
+    const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
     }

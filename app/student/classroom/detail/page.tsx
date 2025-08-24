@@ -1,6 +1,11 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRef, useState } from "react";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
 
 import {
   AlertCircle,
@@ -11,8 +16,12 @@ import {
   BookOpen,
   BookOpenCheck,
   BookText,
+  Calendar,
   CalendarDays,
+  ChartBarDecreasingIcon,
   Check,
+  CheckCircle2,
+  Code2,
   Download,
   DownloadCloud,
   DownloadIcon,
@@ -27,6 +36,9 @@ import {
   MoveLeft,
   Percent,
   PhoneCall,
+  ToolCase,
+  Upload,
+  UploadCloud,
   Users,
   Wallet,
 } from "lucide-react";
@@ -35,7 +47,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useRouter } from "next/navigation"; // untuk app router
-
 
 const transactions = [
   {
@@ -46,16 +57,25 @@ const transactions = [
     status: "pending",
   },
 ];
-const exams = [
-  { title: "HTML Tag Explorer", submissions: 33, date: "21 May 2025" },
-  { title: "Structure & Syntax Drill", submissions: 33, date: "21 May 2025" },
-  { title: "Web Layout Builder", submissions: 33, date: "21 May 2025" },
-  { title: "Clean Code Practice", submissions: 33, date: "21 May 2025" },
-  { title: "Basic Challenge Pro", submissions: 33, date: "21 May 2025" },
-];
 
 export default function page() {
-    const router = useRouter();
+  const router = useRouter();
+  // state untuk file & status upload
+  const [file, setFile] = useState<File | null>(null);
+  const [status, setStatus] = useState(null); // "success" | "error" | null
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setStatus(null); // reset alert kalau ganti file
+  };
+
+  const handleSubmit = () => {
+    if (file) {
+      setStatus("success");
+    } else {
+      setStatus("error");
+    }
+  };
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -77,49 +97,60 @@ export default function page() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* LEFT SIDE */}
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold">Subject Details</h2>
+          <h2 className="text-lg font-semibold">Exam Details</h2>
           <Card className="p-6 flex flex-col gap-4 rounded-xl shadow-sm">
             {/* Thumbnail */}
-            <img
-              src="/classroom/image.png" // Ganti path dengan milikmu
-              alt="Learn Basics HTML"
-              className="w-full h-48 object-cover rounded-lg"
-            />
-
-            {/* Title and Subject */}
-            <div>
-              <h3 className="text-xl font-semibold">Learn Basics HTML</h3>
-              <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
-                <BookText size={14} />
-                Computer Science
-              </p>
-              <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
-                <FileQuestionIcon size={14} />
-                Quizez
-              </p>
-              <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
-                <KeyRound size={14} />
-                Rewards
-              </p>
+            <div className="flex items-center gap-3">
+              <div className="w-20 h-20 rounded-xl border border-gray-300 bg-white  flex items-center justify-center">
+                <BookOpen className="w-7 h-7 text-gray-700" />
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Basic Challenge Pro
+                </h2>
+                <p className="flex items-center gap-1 text-sm text-gray-500">
+                  <FileText className="w-4 h-4" />
+                  33 Submissions
+                </p>
+              </div>
             </div>
 
-            {/* Tabs / Badges */}
-            <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-              <button className="border border-gray-300 text-black font-bold px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm">
-                ABOUT
-              </button>
+            {/* Footer Info */}
+            <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-around gap-6 py-6 px-4 sm:px-6 md:px-8 border border-gray-200 rounded-lg bg-white">
+              {/* Created At */}
+              <div className="text-lg">
+                <p className="text-gray-500 mb-1">Created at</p>
+                <div className="flex items-center gap-2">
+                  <CalendarDays className="w-6 h-6 text-green-600" />
+                  <span className="font-semibold text-gray-900">
+                    21 May 2025
+                  </span>
+                </div>
+              </div>
+
+              {/* Curriculum */}
+              <div className="text-lg">
+                <p className="text-gray-500 mb-1">Curriculum</p>
+                <div className="flex items-center gap-2">
+                  <Book className="w-6 h-6 text-purple-600" />
+                  <span className="font-semibold text-gray-900">
+                    Up-to-date
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Description */}
             <div className="text-sm text-muted-foreground leading-relaxed">
               <h3>Subject Description</h3>
-              <p>
+              <p className="mt-2 text-sm font-semibold">
                 In this lesson, you’ll learn how to build the basic structure of
                 a web page using HTML (HyperText Markup Language), making it
                 perfect for beginners who want to understand how to structure a
                 page, add images, create links, and write clean, organized code.
                 We’ll cover everything from essential HTML tags and page layout
-                to developing good coding.
+                to developing good coding habits that will help you create
+                readable and well-structured websites from the very beginning.
               </p>
             </div>
 
@@ -136,7 +167,7 @@ export default function page() {
               {/* Right Button */}
               <Button className="flex-1 bg-blue-600 hover:bg-blue-500 text-white px-4 py-6 justify-center gap-2">
                 <DownloadIcon className="w-4 h-4" />
-                Download Lesson
+                Download Exam
               </Button>
             </div>
 
@@ -146,6 +177,64 @@ export default function page() {
               <span>Pay tuition to download material.</span>
             </div>
           </Card>
+
+          <Card className="rounded-xl shadow-md p-4 max-w-md">
+      <CardContent className="space-y-4">
+        {/* Title */}
+        <h2 className="text-base font-semibold">Submit Your Submission</h2>
+        <div className="space-y-2">
+      {/* Label */}
+      <p className="text-sm text-gray-500">Upload File</p>
+
+      {/* Upload Box */}
+      <div className="flex items-center justify-between bg-gray-50 border rounded-lg p-3">
+        <div className="flex items-center gap-2">
+          <Upload className="w-5 h-5 text-gray-500" />
+          <span className="font-medium text-gray-800">
+            {file ? file.name : "Upload Your File"}
+          </span>
+        </div>
+
+        {/* Custom Button */}
+        <label
+          htmlFor="file-upload"
+          className="text-blue-600 text-sm font-medium cursor-pointer hover:underline"
+        >
+          {file ? "Change File" : "Add File"}
+        </label>
+
+        {/* Hidden Input */}
+        <input
+          id="file-upload"
+          type="file"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+      </div>
+    </div>
+
+        {/* Submit Button */}
+        <Button
+          onClick={handleSubmit}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl flex items-center justify-center gap-2 py-5"
+        >
+          <Upload className="w-4 h-4" />
+          Submit Submission
+        </Button>
+
+        {/* Alert */}
+        {status === "success" && (
+          <div className="mt-3 p-3 rounded-lg border border-green-500 text-green-700 text-sm">
+            ✅ Your submission has been uploaded successfully.
+          </div>
+        )}
+        {status === "error" && (
+          <div className="mt-3 p-3 rounded-lg border border-red-500 text-red-700 text-sm">
+            ⚠️ Please select a file before submitting.
+          </div>
+        )}
+      </CardContent>
+    </Card>
         </div>
 
         {/* RIGHT SIDE */}
@@ -191,6 +280,27 @@ export default function page() {
               Message
             </Button>
           </Card>
+
+          <Card className="p-3 w-full flex items-center gap-4 text-sm rounded-xl shadow-md">
+            {/* Kiri: Image */}
+            <img
+              src="/student/multimedia.png"
+              alt="Classroom"
+              className="w-28 h-20 rounded-md object-cover"
+            />
+
+            {/* Kanan: Text */}
+            <div className="flex flex-col">
+              <h3 className="text-base font-bold text-gray-900">
+                Learn Basics HTML
+              </h3>
+              <p className="flex items-center gap-2 text-gray-600">
+                <ToolCase className="w-4 h-4" />
+                <span className="font-semibold">Computer Science</span>
+              </p>
+            </div>
+          </Card>
+
           <h2 className="text-lg font-semibold">Classroom Details</h2>
           <Card className="w-full rounded-2xl shadow-md p-4">
             {/* Header: Image + Badge + Text */}
@@ -246,59 +356,6 @@ export default function page() {
           </Card>
         </div>
       </div>
-
-      <div className="space-y-3">
-        <h2 className="text-lg font-semibold">Subject Exams</h2>
-
-        {exams.map((exam, index) => (
-          <div
-            key={index}
-            className="flex flex-col md:grid md:grid-cols-3 md:items-center bg-white border rounded-xl p-4 shadow-sm space-y-3 md:space-y-0"
-          >
-            {/* Kiri: Icon + Judul + Submissions */}
-            <div className="flex items-start space-x-3">
-              <div className="p-2 rounded-md bg-gray-100">
-                <FileText className="w-5 h-5 text-muted-foreground" />
-              </div>
-              <div>
-                <p className="font-semibold">{exam.title}</p>
-                <p className="text-sm text-muted-foreground">
-                  {exam.submissions} Submissions
-                </p>
-              </div>
-            </div>
-
-            {/* Tengah: Tanggal */}
-            <div className="flex flex-col text-sm text-left md:justify-center md:items-start">
-              <span className="text-muted-foreground mb-1">Created at</span>
-              <div className="flex items-center space-x-2">
-                <CalendarDays className="w-4 h-4 text-green-600" />
-                <span className="font-semibold text-black">{exam.date}</span>
-              </div>
-            </div>
-
-            {/* Kanan: Tombol */}
-            <div className="flex justify-start md:justify-end">
-              <Button
-                onClick={() => router.push("/student/classroom/detail")}
-                className="bg-[#0F0F2D] text-white rounded-full px-6 py-1 text-sm"
-              >
-                Details
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
-
-// import React from 'react'
-
-// export default function page() {
-//   return (
-//     <div>
-
-//     </div>
-//   )
-// }
