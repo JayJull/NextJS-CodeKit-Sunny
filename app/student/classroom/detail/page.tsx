@@ -178,10 +178,10 @@ export default function page() {
             </div>
           </Card>
 
+        <h2 className="text-base font-semibold">Submit Your Submission</h2>
           <Card className="rounded-xl shadow-md p-4 max-w-md">
       <CardContent className="space-y-4">
         {/* Title */}
-        <h2 className="text-base font-semibold">Submit Your Submission</h2>
         <div className="space-y-2">
       {/* Label */}
       <p className="text-sm text-gray-500">Upload File</p>
