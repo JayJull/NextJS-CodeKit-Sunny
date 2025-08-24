@@ -32,6 +32,7 @@ import {
   Shield,
   User,
   FileText,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -41,7 +42,7 @@ interface Member {
   email: string;
   avatar: string;
   verified: boolean;
-  licenseId: string;
+  NISN: string;
   userRole: string;
   gender: string;
   status: "published" | "deactivated";
@@ -63,7 +64,7 @@ const EmptyState = () => {
   );
 };
 
-export default function MembersPage() {
+export default function StudentsPage() {
   const members: Member[] = [
     {
       id: 1,
@@ -72,8 +73,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       verified: true,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Male",
       status: "published",
     },
@@ -84,8 +85,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       verified: true,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Male",
       status: "published",
     },
@@ -96,8 +97,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       verified: true,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Female",
       status: "published",
     },
@@ -108,8 +109,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
       verified: true,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Female",
       status: "published",
     },
@@ -120,8 +121,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
       verified: true,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Female",
       status: "published",
     },
@@ -132,8 +133,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       verified: false,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Male",
       status: "deactivated",
     },
@@ -144,8 +145,8 @@ export default function MembersPage() {
       avatar:
         "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
       verified: false,
-      licenseId: "5200400",
-      userRole: "Teacher",
+      NISN: "5200400",
+      userRole: "Student",
       gender: "Female",
       status: "published",
     },
@@ -172,10 +173,10 @@ export default function MembersPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-            Manage Teacher
+            Manage Student
           </h1>
           <p className="text-sm text-gray-500 mt-1">
-            View & update your teachers
+            View & update your students
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -193,7 +194,7 @@ export default function MembersPage() {
             size="lg"
             className="bg-blue-600 hover:bg-blue-700 rounded-xl w-full sm:w-auto focus-visible:outline-none"
           >
-            <Link href="teachers/add">
+            <Link href="students/add">
               Add Member <Plus className="w-4 h-4 ml-2" />
             </Link>
           </Button>
@@ -252,7 +253,7 @@ export default function MembersPage() {
                             )}
                           </div>
                           <p className="text-sm text-gray-600 flex items-center gap-2">
-                            <span>✉</span>
+                            <Mail className="w-4 h-4" />
                             {member.email}
                           </p>
                         </div>
@@ -307,7 +308,7 @@ export default function MembersPage() {
                           </AlertDialogContent>
                         </AlertDialog>
 
-                        <Link href={"teachers/edit"}>
+                        <Link href={"students/edit"}>
                           <Button
                             variant="default"
                             size="sm"
@@ -323,7 +324,7 @@ export default function MembersPage() {
                     <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
                       <div className="flex flex-col">
                         <span className="text-sm text-gray-500 mb-2">
-                          License ID
+                          NISN Number
                         </span>
                         <div className="flex items-center gap-2">
                           <div className="w-6 h-6 bg-orange-100 rounded-md flex items-center justify-center">
@@ -332,7 +333,7 @@ export default function MembersPage() {
                             </span>
                           </div>
                           <span className="font-semibold text-gray-900">
-                            {member.licenseId}
+                            {member.NISN}
                           </span>
                         </div>
                       </div>
@@ -352,7 +353,9 @@ export default function MembersPage() {
                       </div>
 
                       <div className="flex flex-col">
-                        <span className="text-sm text-gray-500 mb-2">Gender</span>
+                        <span className="text-sm text-gray-500 mb-2">
+                          Gender
+                        </span>
                         <div className="flex items-center gap-2">
                           <div
                             className={`w-6 h-6 rounded-full flex items-center justify-center ${
@@ -383,7 +386,9 @@ export default function MembersPage() {
                     <PaginationItem>
                       <PaginationPrevious
                         onClick={() =>
-                          setCurrentPage((prev: number) => Math.max(prev - 1, 1))
+                          setCurrentPage((prev: number) =>
+                            Math.max(prev - 1, 1)
+                          )
                         }
                         className={`text-xs sm:text-sm ${
                           currentPage === 1
@@ -468,7 +473,7 @@ export default function MembersPage() {
                             </div>
                           </div>
                           <p className="text-sm text-gray-600 flex items-center gap-2">
-                            <span>✉</span>
+                            <Mail className="w-4 h-4" />
                             {member.email}
                           </p>
                         </div>
@@ -523,21 +528,23 @@ export default function MembersPage() {
                           </AlertDialogContent>
                         </AlertDialog>
 
-                        <Button
-                          variant="default"
-                          size="sm"
-                          className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                        >
-                          <Edit size={14} className="mr-2" />
-                          Edit
-                        </Button>
+                        <Link href={"students/edit"}>
+                          <Button
+                            variant="default"
+                            size="sm"
+                            className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                          >
+                            <Edit size={14} className="mr-2" />
+                            Edit
+                          </Button>
+                        </Link>
                       </div>
                     </div>
 
                     <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-gray-100">
                       <div className="flex flex-col">
                         <span className="text-sm text-gray-500 mb-2">
-                          License ID
+                          NISN Number
                         </span>
                         <div className="flex items-center gap-2">
                           <div className="w-6 h-6 bg-orange-100 rounded-md flex items-center justify-center">
@@ -546,7 +553,7 @@ export default function MembersPage() {
                             </span>
                           </div>
                           <span className="font-semibold text-gray-900">
-                            {member.licenseId}
+                            {member.NISN}
                           </span>
                         </div>
                       </div>
@@ -566,7 +573,9 @@ export default function MembersPage() {
                       </div>
 
                       <div className="flex flex-col">
-                        <span className="text-sm text-gray-500 mb-2">Gender</span>
+                        <span className="text-sm text-gray-500 mb-2">
+                          Gender
+                        </span>
                         <div className="flex items-center gap-2">
                           <div
                             className={`w-6 h-6 rounded-full flex items-center justify-center ${
@@ -598,7 +607,9 @@ export default function MembersPage() {
                       <PaginationItem>
                         <PaginationPrevious
                           onClick={() =>
-                            setCurrentPage((prev: number) => Math.max(prev - 1, 1))
+                            setCurrentPage((prev: number) =>
+                              Math.max(prev - 1, 1)
+                            )
                           }
                           className={`text-xs sm:text-sm ${
                             currentPage === 1

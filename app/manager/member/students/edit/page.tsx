@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export default function AddTeacher() {
-  const [selectedUserId, setSelectedUserId] = useState<string>("");
-  const [licenseNumber, setLicenseNumber] = useState<string>("");
+export default function AddMember() {
+  const [selectedUserId, setSelectedUserId] = useState<string>(
+    "User ID: 001 - John Smith"
+  );
+  const [NISNNumber, setNISNNumber] = useState<string>("01229332");
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
-  const [isLicenseFocused, setIsLicenseFocused] = useState(false);
+  const [isNISNFocused, setIsNISNFocused] = useState(false);
 
   const userDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +41,7 @@ export default function AddTeacher() {
 
   const handleCancel = (): void => {
     setSelectedUserId("");
-    setLicenseNumber("");
+    setNISNNumber("");
     setIsUserDropdownOpen(false);
   };
 
@@ -49,14 +51,14 @@ export default function AddTeacher() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Add New Teacher
+              Edit Student
             </h1>
             <Link
-              href="/manager/member/teachers"
+              href="/manager/member/students"
               className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
             >
               <ArrowLeft className="w-4 h-4" />
-              Manage Teachers
+              Manage Student
             </Link>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -158,10 +160,10 @@ export default function AddTeacher() {
                 </div>
               </div>
 
-              {/* License Number Field */}
+              {/* NISN Number Field */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                 <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-32 sm:flex-shrink-0">
-                  License Number
+                  NISN Number
                 </Label>
                 <div className="relative flex-1">
                   <div className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400 z-10 flex items-center justify-center">
@@ -169,19 +171,19 @@ export default function AddTeacher() {
                   </div>
                   <span
                     className={`absolute left-8 sm:left-10 transition-all duration-300 ease-in-out pointer-events-none z-10 bg-white px-1 ${
-                      isLicenseFocused || licenseNumber
+                      isNISNFocused || NISNNumber
                         ? "-top-2 text-xs text-gray-500"
                         : "top-1/2 transform -translate-y-1/2 text-sm sm:text-base text-gray-500"
                     }`}
                   >
-                    Type License Number
+                    Type NISN Number
                   </span>
                   <Input
                     type="text"
-                    value={licenseNumber}
-                    onChange={(e) => setLicenseNumber(e.target.value)}
-                    onFocus={() => setIsLicenseFocused(true)}
-                    onBlur={() => setIsLicenseFocused(false)}
+                    value={NISNNumber}
+                    onChange={(e) => setNISNNumber(e.target.value)}
+                    onFocus={() => setIsNISNFocused(true)}
+                    onBlur={() => setIsNISNFocused(false)}
                     className="pl-8 sm:pl-10 py-4 sm:py-5 text-sm sm:text-base border-gray-300 focus:border-blue-500 focus:ring-blue-500 w-full border rounded-lg focus:outline-none focus:ring-2 bg-white hover:border-gray-400 transition-colors"
                   />
                 </div>

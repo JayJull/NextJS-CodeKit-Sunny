@@ -2,19 +2,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  ArrowLeft,
   Sparkles,
-  CirclePlus,
   User,
   Users,
   CheckCircle,
 } from "lucide-react";
-import Link from "next/link";
 
-export default function AddMember() {
+export default function AssignRoles() {
   const [selectedUserId, setSelectedUserId] = useState<string>("");
   const [selectedRoleId, setSelectedRoleId] = useState<string>("");
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);

@@ -64,7 +64,7 @@ const EmptyState = () => {
   );
 };
 
-export default function MembersPage() {
+export default function TeachersPage() {
   const members: Member[] = [
     {
       id: 1,
@@ -524,14 +524,16 @@ export default function MembersPage() {
                           </AlertDialogContent>
                         </AlertDialog>
 
-                        <Button
-                          variant="default"
-                          size="sm"
-                          className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
-                        >
-                          <Edit size={14} className="mr-2" />
-                          Edit
-                        </Button>
+                        <Link href={"teachers/edit"}>
+                          <Button
+                            variant="default"
+                            size="sm"
+                            className="bg-gray-900 hover:bg-gray-800 text-white rounded-lg px-4 py-2"
+                          >
+                            <Edit size={14} className="mr-2" />
+                            Edit
+                          </Button>
+                        </Link>
                       </div>
                     </div>
 
