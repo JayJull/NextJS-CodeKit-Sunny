@@ -33,6 +33,7 @@ import {
   FileText,
   Check,
   X,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -246,7 +247,7 @@ export default function MembersPage() {
                             )}
                           </div>
                           <p className="text-sm text-gray-600 flex items-center gap-2">
-                            <span>✉</span>
+                            <Mail className="w-4 h-4"/>
                             {member.email}
                           </p>
                         </div>
@@ -489,7 +490,7 @@ export default function MembersPage() {
                             )}
                           </div>
                           <p className="text-sm text-gray-600 flex items-center gap-2">
-                            <span>✉</span>
+                            <Mail className="w-4 h-4"/>
                             {member.email}
                           </p>
                         </div>
