@@ -51,14 +51,14 @@ export default function AddMember() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Add New Teacher
+              Edit Teacher
             </h1>
             <Link
               href="/manager/member/teachers"
               className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
             >
               <ArrowLeft className="w-4 h-4" />
-              Manage Teacher
+              Manage Teachers
             </Link>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">

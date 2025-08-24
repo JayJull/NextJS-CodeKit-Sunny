@@ -188,7 +188,20 @@ export const managerMenuItems: MenuItem[] = [
         id: "users",
         label: "Users",
         icon: <UserCheck className="h-4 w-4" />,
-        href: "/manager/users",
+        children: [
+          {
+            id: "user list",
+            label: "User List",
+            icon: <div className="w-2 h-2 bg-gray-400 rounded-full" />,
+            href: "/manager/user/user-lists",
+          },
+          {
+            id: "assign role",
+            label: "Assign Role",
+            icon: <div className="w-2 h-2 bg-gray-400 rounded-full" />,
+            href: "/manager/user/assign-roles",
+          },
+        ],
       },
       {
         id: "transactions",

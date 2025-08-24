@@ -56,7 +56,7 @@ export default function AddMember() {
               className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
             >
               <ArrowLeft className="w-4 h-4" />
-              Manage Teacher
+              Manage Teachers
             </Link>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
