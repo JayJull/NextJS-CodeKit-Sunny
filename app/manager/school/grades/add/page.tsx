@@ -63,7 +63,6 @@ export default function AddGrade() {
               Complete the Form
             </CardTitle>
             <CardContent className="p-4 sm:p-6 space-y-6 sm:space-y-8">
-              {/* Grade Name Field */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                 <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-32 sm:flex-shrink-0">
                   Grade Name
@@ -92,7 +91,6 @@ export default function AddGrade() {
                 </div>
               </div>
 
-              {/* Grade Price Field */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                 <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-32 sm:flex-shrink-0">
                   Grade Price
@@ -121,7 +119,6 @@ export default function AddGrade() {
                 </div>
               </div>
 
-              {/* Duration in Month Field */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                 <Label className="flex-1 text-sm font-medium text-gray-600 sm:w-32 sm:flex-shrink-0">
                   Duration in Month
@@ -153,7 +150,6 @@ export default function AddGrade() {
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-6">
                 <Button
                   className="bg-red-500 text-white hover:bg-red-600 px-6 py-3 rounded-lg border-red-500 h-12 text-sm sm:text-base w-full sm:w-auto font-medium"

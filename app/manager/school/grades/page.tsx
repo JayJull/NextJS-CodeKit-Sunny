@@ -59,7 +59,7 @@ const EmptyState = () => {
   );
 };
 
-export default function TopicsPage() {
+export default function GradesPage() {
   const topics: Topic[] = [
     {
       icon: <BookOpen className="w-6 h-6" />,
