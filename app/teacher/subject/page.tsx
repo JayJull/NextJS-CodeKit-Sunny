@@ -130,8 +130,9 @@ export default function TeacherOverview() {
               {currentSubjects.map((item, idx) => (
                 <Card key={idx} className="p-4 sm:p-6">
                   <div className="flex flex-col gap-4">
-                    {/* Top section with image, subject info, and buttons */}
-                    <div className="flex items-center justify-between gap-4">
+                    {/* Top row with image, certified and buttons */}
+                    <div className="grid grid-cols-3 gap-4 sm:gap-8 items-center">
+                      {/* Image and title aligned with Student */}
                       <div className="flex items-center gap-4">
                         <img
                           src={item.image}
@@ -149,7 +150,7 @@ export default function TeacherOverview() {
                         </div>
                       </div>
 
-                      {/* Certified badge in center */}
+                      {/* Certified badge aligned with Classrooms */}
                       <div className="flex justify-center">
                         {item.certified && (
                           <span className="inline-flex items-center px-2 py-1 text-xs font-bold text-blue-800">
@@ -158,13 +159,23 @@ export default function TeacherOverview() {
                         )}
                       </div>
 
-                      {/* Action buttons aligned with image */}
-                      <div className="flex gap-2">
-                        <Button variant="outline" size="sm" className="px-4">
-                          <Edit size={14} className="mr-1 sm:mr-2" />
-                        </Button>
+                      {/* Action buttons aligned with Lesson */}
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        <Link
+                          href={`/teacher/editsubject?subject=${encodeURIComponent(
+                            item.title
+                          )}`}
+                        >
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="px-3 sm:px-4"
+                          >
+                            <Edit size={14} className="mr-1 sm:mr-2" />
+                          </Button>
+                        </Link>
                         <Button
-                          className="bg-blue-600 hover:bg-blue-700 px-4"
+                          className="bg-blue-600 hover:bg-blue-700 px-3 sm:px-4"
                           size="sm"
                         >
                           <Album size={14} className="mr-1 sm:mr-2" />
@@ -286,10 +297,11 @@ export default function TeacherOverview() {
           <TabsContent value="deactivated">
             <div className="space-y-4">
               {currentSubjects.map((item, idx) => (
-                <Card key={idx} className="p-4 sm:p-6 opacity-60">
+                <Card key={idx} className="p-4 sm:p-6">
                   <div className="flex flex-col gap-4">
-                    {/* Top section with image, subject info, and buttons */}
-                    <div className="flex items-center justify-between gap-4">
+                    {/* Top row with image, certified and buttons */}
+                    <div className="grid grid-cols-3 gap-4 sm:gap-8 items-center">
+                      {/* Image and title aligned with Student */}
                       <div className="flex items-center gap-4">
                         <img
                           src={item.image}
@@ -307,21 +319,21 @@ export default function TeacherOverview() {
                         </div>
                       </div>
 
-                      {/* Certified badge in center */}
+                      {/* Certified badge aligned with Classrooms */}
                       <div className="flex justify-center">
                         {item.certified && (
-                          <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-600">
-                            <BadgeCheck /> CERTIFIED
+                          <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-red-600">
+                            <BadgeCheck /> UNCERTIFIED
                           </span>
                         )}
                       </div>
 
-                      {/* Action buttons aligned with image */}
-                      <div className="flex gap-2">
+                      {/* Action buttons aligned with Lesson */}
+                      <div className="flex gap-2 justify-center cursor-not-allowed">
                         <Button
                           variant="secondary"
                           size="sm"
-                          className="px-4"
+                          className="sm:size-default pointer-events-none"
                           disabled
                         >
                           <Edit size={14} className="mr-1 sm:mr-2" />
