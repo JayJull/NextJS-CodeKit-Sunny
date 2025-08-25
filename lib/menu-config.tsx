@@ -38,51 +38,7 @@ export const studentMenuItems: MenuItem[] = [
         href: "/student/transactions",
       },
     ],
-  },
-  {
-    id: "extracurricular",
-    label: "Extracurricular Activity",
-    children: [
-      {
-        id: "community",
-        label: "Community",
-        icon: <Users className="h-4 w-4" />,
-        href: "/student/community",
-        badge: "New",
-      },
-      {
-        id: "school-competition",
-        label: "School Competition",
-        icon: <Trophy className="h-4 w-4" />,
-        href: "/student/competition",
-      },
-      {
-        id: "school-events",
-        label: "School Events",
-        icon: <Calendar className="h-4 w-4" />,
-        href: "/student/events",
-        badge: "9+",
-      },
-    ],
-  },
-  {
-    id: "about-school",
-    label: "About School",
-    children: [
-      {
-        id: "school-profile",
-        label: "School Profile",
-        icon: <School className="h-4 w-4" />,
-        href: "/student/school-profile",
-      },
-      {
-        id: "all-teachers",
-        label: "All Teachers",
-        icon: <UserCheck className="h-4 w-4" />,
-        href: "/student/teachers",
-      },
-    ],
-  },
+  }
 ];
 
 export const teacherMenuItems: MenuItem[] = [
