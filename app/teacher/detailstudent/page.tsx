@@ -10,7 +10,6 @@ import {
   Mail,
   GraduationCap,
   CreditCard,
-  BarChart3,
   Download,
   Aperture,
   BadgeCheck,

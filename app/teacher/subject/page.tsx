@@ -162,7 +162,7 @@ export default function TeacherOverview() {
                       {/* Action buttons aligned with Lesson */}
                       <div className="flex flex-wrap gap-2 justify-center">
                         <Link
-                          href={`/teacher/editsubject?subject=${encodeURIComponent(
+                          href={`/teacher/subjectDetails?subject=${encodeURIComponent(
                             item.title
                           )}`}
                         >

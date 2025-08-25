@@ -11,10 +11,13 @@ import {
   FileCheck2,
 } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function EditSubjectForm() {
   // Mock data for all subjects
   const className = new URLSearchParams("subject") || "Subject Tidak Ditemukan";
+  const searchParams = useSearchParams();
+
   const subjectData = {
     "Learning Basic HTML": {
       name: "Learning Basic HTML",
@@ -133,7 +136,11 @@ export default function EditSubjectForm() {
         </div>
 
         <div className="flex items-center mb-6">
-          <Link href={`/teacher/subject?subject=${encodeURIComponent}`}>
+          <Link
+            href={`/teacher/subjectDetails?subject=${encodeURIComponent(
+              currentSubject.name
+            )}`}
+          >
             <Button variant="ghost" size="sm" className="mr-4">
               <ArrowLeft size={16} className="mr-2" />
               <span className="text-sm font-medium text-gray-500">
@@ -178,14 +185,10 @@ export default function EditSubjectForm() {
                 </label>
                 <div className="sm:col-span-2">
                   <div className="p-3 border border-gray-200 rounded-lg">
-                    <p className="text-xs text-gray-500 mb-1">
-                      Enter Subject Name
-                    </p>
                     <input
                       type="text"
-                      value={subjectName}
                       onChange={(e) => setSubjectName(e.target.value)}
-                      className="w-full text-sm font-medium text-gray-900 bg-transparent border-none outline-none"
+                      className="w-full text-sm text-gray-900 bg-transparent border-none outline-none resize-none"
                       placeholder="Enter subject name..."
                     />
                   </div>
@@ -199,11 +202,7 @@ export default function EditSubjectForm() {
                 </label>
                 <div className="sm:col-span-2">
                   <div className="p-3 border border-gray-200 rounded-lg">
-                    <p className="text-xs text-gray-500 mb-1">
-                      Enter Subject Descriptions
-                    </p>
                     <textarea
-                      value={subjectDescription}
                       onChange={(e) => setSubjectDescription(e.target.value)}
                       className="w-full text-sm text-gray-900 bg-transparent border-none outline-none resize-none"
                       rows={3}
@@ -224,11 +223,9 @@ export default function EditSubjectForm() {
                     className="w-full p-3 border border-gray-200 rounded-lg text-left"
                   >
                     <div>
-                      <p className="text-xs text-gray-500">Choose Topic</p>
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-gray-900">
-                          {selectedTopic}
-                        </p>
+                        {" "}
+                        <p className="text-xs text-gray-500">Choose Topic</p>
                         <ChevronDown size={16} className="text-gray-500" />
                       </div>
                     </div>
@@ -266,11 +263,8 @@ export default function EditSubjectForm() {
                     className="w-full p-3 border border-gray-200 rounded-lg text-left "
                   >
                     <div>
-                      <p className="text-xs text-gray-500">Choose Teacher</p>
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-gray-900">
-                          {selectedTeacher}
-                        </p>
+                        <p className="text-xs text-gray-500">Choose Teacher</p>
                         <ChevronDown size={16} className="text-gray-500" />
                       </div>
                     </div>
@@ -304,13 +298,10 @@ export default function EditSubjectForm() {
                 </label>
                 <div className="sm:col-span-2">
                   <div className="p-3 border border-gray-200 rounded-lg ">
-                    <p className="text-xs text-gray-500 mb-1">
-                      Upload Your File
-                    </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-900">
-                        {fileName}
-                      </span>
+                      <p className="text-xs text-gray-500 mb-1">
+                        Upload Your File
+                      </p>
                       <label className="cursor-pointer">
                         <span className="text-blue-500 hover:text-blue-600 text-sm font-normal">
                           Change File
