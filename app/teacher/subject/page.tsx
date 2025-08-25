@@ -95,15 +95,15 @@ export default function TeacherOverview() {
   const currentSubjects = subjects.slice(startIndex, endIndex);
 
   return (
-    <div className="p-3 sm:p-6">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+    <div className="p-4 lg:p-2">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+          <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
             Subject Assigned
           </h1>
           <p className="text-gray-500 text-sm">Manage and view your subjects</p>
         </div>
-        <Button variant="outline" className="w-fit sm:w-auto">
+        <Button variant="outline" className="w-full sm:w-auto">
           <Download size={16} />
           <span className="text-sm font-medium ml-2">Import CSV</span>
         </Button>
@@ -111,16 +111,16 @@ export default function TeacherOverview() {
 
       <div>
         <Tabs defaultValue="published">
-          <TabsList className="w-full sm:w-auto">
+          <TabsList className="w-full lg:w-auto">
             <TabsTrigger
               value="published"
-              className="flex-1 sm:flex-none data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+              className="flex-1 lg:flex-none data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
             >
               PUBLISHED
             </TabsTrigger>
             <TabsTrigger
               value="deactivated"
-              className="flex-1 sm:flex-none data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+              className="flex-1 lg:flex-none data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
             >
               DEACTIVATED
             </TabsTrigger>
@@ -128,18 +128,62 @@ export default function TeacherOverview() {
           <TabsContent value="published">
             <div className="space-y-4">
               {currentSubjects.map((item, idx) => (
-                <Card key={idx} className="p-4 sm:p-6">
+                <Card key={idx} className="p-4 lg:p-6">
                   <div className="flex flex-col gap-4">
-                    {/* Top section with image, subject info, and buttons */}
-                    <div className="flex items-center justify-between gap-4">
+                    {/* Mobile Layout */}
+                    <div className="block lg:hidden">
+                      <div className="flex gap-4 mb-4">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-semibold mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground flex items-center gap-1 mb-2">
+                            <BookText size={14} />
+                            {item.category}
+                          </p>
+                          {item.certified && (
+                            <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 gap-1">
+                              <BadgeCheck size={12} /> CERTIFIED
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Action buttons for mobile */}
+                      <div className="flex gap-2 mb-4">
+                        <Link href={"subject/edit"} className="flex-1">
+                          <Button variant="outline" size="sm" className="w-full">
+                            <Edit size={14} className="mr-2" />
+                            <span className="text-xs">Edit</span>
+                          </Button>
+                        </Link>
+                        <Link href={"subject/manage"} className="flex-1">
+                          <Button
+                            className="bg-blue-600 hover:bg-blue-700 w-full"
+                            size="sm"
+                          >
+                            <Album size={14} className="mr-2" />
+                            <span className="text-xs">Exams</span>
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Desktop Layout */}
+                    <div className="hidden lg:flex items-center justify-between gap-4">
                       <div className="flex items-center gap-4">
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg flex-shrink-0"
+                          className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
                         />
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-base sm:text-lg font-semibold mb-2">
+                          <h3 className="text-lg font-semibold mb-2">
                             {item.title}
                           </h3>
                           <p className="text-sm text-muted-foreground flex items-center gap-1">
@@ -152,7 +196,7 @@ export default function TeacherOverview() {
                       {/* Certified badge in center */}
                       <div className="flex justify-center">
                         {item.certified && (
-                          <span className="inline-flex items-center px-2 py-1 text-xs font-bold text-blue-800">
+                          <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-blue-800 gap-2">
                             <BadgeCheck /> CERTIFIED
                           </span>
                         )}
@@ -160,28 +204,33 @@ export default function TeacherOverview() {
 
                       {/* Action buttons aligned with image */}
                       <div className="flex gap-2">
-                        <Button variant="outline" size="sm" className="px-4">
-                          <Edit size={14} className="mr-1 sm:mr-2" />
-                        </Button>
-                        <Button
-                          className="bg-blue-600 hover:bg-blue-700 px-4"
-                          size="sm"
-                        >
-                          <Album size={14} className="mr-1 sm:mr-2" />
-                          <span className="text-xs sm:text-sm">Exams</span>
-                        </Button>
+                        <Link href={"subject/edit"}>
+                          <Button variant="outline" size="sm" className="px-4">
+                            <Edit size={14} className="mr-2" />
+                          </Button>
+                        </Link>
+
+                        <Link href={"subject/manage"}>
+                          <Button
+                            className="bg-blue-600 hover:bg-blue-700 px-4"
+                            size="sm"
+                          >
+                            <Album size={14} className="mr-2" />
+                            <span className="text-sm">Exams</span>
+                          </Button>
+                        </Link>
                       </div>
                     </div>
 
-                    {/* Stats row below */}
-                    <div className="grid grid-cols-3 gap-4 sm:gap-8">
+                    {/* Stats row */}
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-8">
                       <div className="text-center">
                         <p className="text-xs text-muted-foreground mb-1">
                           Student
                         </p>
                         <div className="flex items-center justify-center gap-1">
                           <Users size={14} className="text-purple-600" />
-                          <span className="text-sm font-semibold">
+                          <span className="text-xs sm:text-sm font-semibold">
                             {item.totalStudents}
                           </span>
                         </div>
@@ -195,7 +244,7 @@ export default function TeacherOverview() {
                             size={14}
                             className="text-orange-600"
                           />
-                          <span className="text-sm font-semibold">
+                          <span className="text-xs sm:text-sm font-semibold">
                             {item.classrooms}
                           </span>
                         </div>
@@ -206,7 +255,7 @@ export default function TeacherOverview() {
                         </p>
                         <div className="flex items-center justify-center gap-1">
                           <UserCheck size={14} className="text-green-600" />
-                          <span className="text-sm font-semibold">
+                          <span className="text-xs sm:text-sm font-semibold">
                             {item.status}
                           </span>
                         </div>
@@ -217,7 +266,7 @@ export default function TeacherOverview() {
               ))}
 
               {/* Pagination */}
-              <Pagination className="mt-6 justify-center sm:justify-start">
+              <Pagination className="mt-6 justify-center lg:justify-start">
                 <PaginationContent className="flex-wrap gap-1">
                   <PaginationItem>
                     <PaginationPrevious
@@ -233,6 +282,7 @@ export default function TeacherOverview() {
                     const pageNumber = index + 1;
                     const isActive = currentPage === pageNumber;
 
+                    // Show first page, last page, current page, and neighbors
                     const shouldRender =
                       pageNumber === 1 ||
                       pageNumber === totalPages ||
@@ -240,6 +290,7 @@ export default function TeacherOverview() {
 
                     if (!shouldRender) {
                       if (
+                        // Add ellipsis if previous item wasn't ellipsis
                         (pageNumber === currentPage - 2 && pageNumber > 1) ||
                         (pageNumber === currentPage + 2 &&
                           pageNumber < totalPages)
@@ -286,18 +337,65 @@ export default function TeacherOverview() {
           <TabsContent value="deactivated">
             <div className="space-y-4">
               {currentSubjects.map((item, idx) => (
-                <Card key={idx} className="p-4 sm:p-6 opacity-60">
+                <Card key={idx} className="p-4 lg:p-6 opacity-60">
                   <div className="flex flex-col gap-4">
-                    {/* Top section with image, subject info, and buttons */}
-                    <div className="flex items-center justify-between gap-4">
+                    {/* Mobile Layout */}
+                    <div className="block lg:hidden">
+                      <div className="flex gap-4 mb-4">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-16 h-16 object-cover rounded-lg flex-shrink-0 grayscale"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-semibold mb-2">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground flex items-center gap-1 mb-2">
+                            <BookText size={14} />
+                            {item.category}
+                          </p>
+                          {item.certified && (
+                            <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-600 gap-1">
+                              <BadgeCheck size={12} /> CERTIFIED
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Action buttons for mobile */}
+                      <div className="flex gap-2 mb-4">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="flex-1"
+                          disabled
+                        >
+                          <Edit size={14} className="mr-2" />
+                          <span className="text-xs">Edit</span>
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="flex-1"
+                          disabled
+                        >
+                          <Eye size={14} className="mr-2" />
+                          <span className="text-xs">Exams</span>
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Desktop Layout */}
+                    <div className="hidden lg:flex items-center justify-between gap-4">
                       <div className="flex items-center gap-4">
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg flex-shrink-0 grayscale"
+                          className="w-20 h-20 object-cover rounded-lg flex-shrink-0 grayscale"
                         />
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-base sm:text-lg font-semibold mb-2">
+                          <h3 className="text-lg font-semibold mb-2">
                             {item.title}
                           </h3>
                           <p className="text-sm text-muted-foreground flex items-center gap-1">
@@ -310,7 +408,7 @@ export default function TeacherOverview() {
                       {/* Certified badge in center */}
                       <div className="flex justify-center">
                         {item.certified && (
-                          <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-600">
+                          <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-600 gap-2">
                             <BadgeCheck /> CERTIFIED
                           </span>
                         )}
@@ -324,8 +422,8 @@ export default function TeacherOverview() {
                           className="px-4"
                           disabled
                         >
-                          <Edit size={14} className="mr-1 sm:mr-2" />
-                          <span className="text-xs sm:text-sm">Edit</span>
+                          <Edit size={14} className="mr-2" />
+                          <span className="text-sm">Edit</span>
                         </Button>
                         <Button
                           variant="secondary"
@@ -333,21 +431,21 @@ export default function TeacherOverview() {
                           className="px-4"
                           disabled
                         >
-                          <Eye size={14} className="mr-1 sm:mr-2" />
-                          <span className="text-xs sm:text-sm">Exams</span>
+                          <Eye size={14} className="mr-2" />
+                          <span className="text-sm">Exams</span>
                         </Button>
                       </div>
                     </div>
 
-                    {/* Stats row below */}
-                    <div className="grid grid-cols-3 gap-4 sm:gap-8">
+                    {/* Stats row */}
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-8">
                       <div className="text-center">
                         <p className="text-xs text-muted-foreground mb-1">
                           Student
                         </p>
                         <div className="flex items-center justify-center gap-1">
                           <Users size={14} className="text-purple-600" />
-                          <span className="text-sm font-semibold">
+                          <span className="text-xs sm:text-sm font-semibold">
                             {item.totalStudents}
                           </span>
                         </div>
@@ -358,7 +456,7 @@ export default function TeacherOverview() {
                         </p>
                         <div className="flex items-center justify-center gap-1">
                           <BookText size={14} className="text-orange-600" />
-                          <span className="text-sm font-semibold">
+                          <span className="text-xs sm:text-sm font-semibold">
                             {item.classrooms}
                           </span>
                         </div>
@@ -369,7 +467,7 @@ export default function TeacherOverview() {
                         </p>
                         <div className="flex items-center justify-center gap-1">
                           <UserCheck size={14} className="text-green-600" />
-                          <span className="text-sm font-semibold">
+                          <span className="text-xs sm:text-sm font-semibold">
                             {item.status}
                           </span>
                         </div>
@@ -379,7 +477,7 @@ export default function TeacherOverview() {
                 </Card>
               ))}
 
-              <Pagination className="mt-6 justify-center sm:justify-start">
+              <Pagination className="mt-6 justify-center lg:justify-start">
                 <PaginationContent className="flex-wrap gap-1">
                   <PaginationItem>
                     <PaginationPrevious

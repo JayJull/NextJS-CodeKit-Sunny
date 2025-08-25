@@ -67,7 +67,7 @@ export default function TeacherOverview() {
   const currentClassrooms = classrooms.slice(startIndex, endIndex);
 
   return (
-    <div className="p-3 sm:p-6">
+    <div className="p-4 sm:p-2">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
@@ -138,13 +138,9 @@ export default function TeacherOverview() {
                   </div>
 
                   <div className="flex justify-end">
-                    <Link
-                      href={`/teacher/details?class=${encodeURIComponent(
-                        item.title
-                      )}`}
-                    >
+                    <Link href={"classes/details"}>
                       <Button
-                        variant="emerald"
+                        variant="default"
                         size="sm"
                         className="sm:size-default"
                       >
