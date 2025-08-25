@@ -47,6 +47,12 @@ export const teacherMenuItems: MenuItem[] = [
     label: "GENERAL",
     children: [
       {
+        id: "my-profile",
+        label: "Dashboard",
+        icon: <Users className="h-4 w-4" />,
+        href: "/teacher",
+      },
+      {
         id: "my-subject",
         label: "My Subject",
         icon: <BookOpen className="h-4 w-4" />,
