@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased transition-colors duration-300 ease-in-out font-['Poppins',_system-ui,_sans-serif]`}
         style={{
-          colorScheme: 'light dark',
+          colorScheme: 'light',
         }}
       >
         <ThemeProvider 

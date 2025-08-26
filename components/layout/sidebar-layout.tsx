@@ -255,7 +255,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ menuItems }) => {
           <p className="text-xs text-muted-foreground transition-colors duration-300 ease-in-out">
             © {new Date().getFullYear()} Stellarrize
           </p>
-          <Button
+          {/* <Button
             variant="ghost"
             size="icon"
             className={`theme-toggle-btn h-10 w-10 text-sidebar-foreground transition-all duration-300 ease-in-out hover:bg-sidebar-accent ${
@@ -284,7 +284,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ menuItems }) => {
                 </div>
               </div>
             ) : null}
-          </Button>
+          </Button> */}
         </div>
       </div>
     </Sidebar>

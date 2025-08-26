@@ -173,15 +173,15 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
   };
 
   return (
-    <header className="flex h-16 shrink-0 items-center justify-between border-b bg-white dark:bg-gray-900 dark:border-gray-800 px-2 sm:px-4 lg:px-6 font-poppins">
+    <header className="flex h-16 shrink-0 items-center justify-between border-b bg-white border-gray-200 px-2 sm:px-4 lg:px-6 font-poppins">
       <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
-        <SidebarTrigger className="h-8 w-8 text-black dark:text-slate-300 flex-shrink-0" />
-        <div className="h-6 w-px bg-border hidden sm:block bg-slate-300 dark:bg-slate-600 flex-shrink-0" />
+        <SidebarTrigger className="h-8 w-8 text-black flex-shrink-0" />
+        <div className="h-6 w-px bg-border hidden sm:block bg-slate-300 flex-shrink-0" />
         <div className="relative flex-1 max-w-md min-w-0">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground flex-shrink-0" />
           <Input
             placeholder="Search your subject or student"
-            className="rounded-full w-full pl-10 pr-12 sm:pr-16 h-10 border-gray-200 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-100"
+            className="rounded-full w-full pl-10 pr-12 sm:pr-16 h-10 border-gray-200 focus:border-blue-500 focus:ring-blue-500 bg-white text-gray-900"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -192,7 +192,7 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
           />
           <Button
             size="sm"
-            className="rounded-full absolute right-1 top-1/2 -translate-y-1/2 h-8 px-2 sm:px-4 bg-gray-800 hover:bg-gray-500 dark:bg-gray-400 dark:hover:bg-gray-500 text-xs sm:text-sm flex-shrink-0"
+            className="rounded-full absolute right-1 top-1/2 -translate-y-1/2 h-8 px-2 sm:px-4 bg-gray-800 hover:bg-gray-700 text-white text-xs sm:text-sm flex-shrink-0"
             onClick={handleSearch}
           >
             <span className="hidden sm:inline">GO</span>
@@ -207,7 +207,7 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
             <Button
               variant="ghost"
               size="icon"
-              className="relative h-10 w-10 text-black dark:text-slate-300"
+              className="relative h-10 w-10 text-black"
             >
               <Bell className="h-5 w-5" />
               {unreadCount > 0 && (
@@ -230,7 +230,7 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
                 {unreadCount > 0 && (
                   <Badge
                     variant="secondary"
-                    className="bg-orange-100 text-orange-600 dark:bg-orange-900/50 dark:text-orange-300 text-xs"
+                    className="bg-orange-100 text-orange-600 text-xs"
                   >
                     {unreadCount} new
                   </Badge>
@@ -248,20 +248,20 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
               )}
             </div>
 
-            <div className="overflow-y-auto max-h-80 sm:max-h-96 scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-track-gray-100 dark:scrollbar-track-gray-900 scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600">
+            <div className="overflow-y-auto max-h-80 sm:max-h-96 scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-rounded-md scrollbar-track-gray-100 scrollbar-thumb-gray-400">
               {notifications.length === 0 ? (
-                <div className="p-6 text-center text-gray-500 dark:text-gray-400">
+                <div className="p-6 text-center text-gray-500">
                   <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
                   <p className="text-sm">No notifications yet</p>
                 </div>
               ) : (
-                <div className="divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="divide-y divide-gray-200">
                   {notifications.map((notification) => (
                     <div
                       key={notification.id}
-                      className={`group p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
+                      className={`group p-3 sm:p-4 hover:bg-gray-50 transition-colors ${
                         !notification.isRead
-                          ? "bg-blue-50/50 dark:bg-blue-900/10 border-l-2 border-blue-500"
+                          ? "bg-blue-50/50 border-l-2 border-blue-500"
                           : ""
                       }`}
                     >
@@ -285,16 +285,16 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
                               <p
                                 className={`text-sm font-medium leading-tight ${
                                   !notification.isRead
-                                    ? "text-gray-900 dark:text-gray-100"
-                                    : "text-gray-700 dark:text-gray-300"
+                                    ? "text-gray-900"
+                                    : "text-gray-700"
                                 }`}
                               >
                                 {notification.title}
                               </p>
-                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed break-words">
+                              <p className="text-xs text-gray-500 mt-1 leading-relaxed break-words">
                                 {notification.message}
                               </p>
-                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                              <p className="text-xs text-gray-400 mt-2">
                                 {notification.time}
                               </p>
                             </div>
@@ -308,7 +308,7 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-6 w-6 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+                                    className="h-6 w-6 text-gray-400 hover:text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
                                   >
                                     <MoreHorizontal className="h-3 w-3" />
                                   </Button>
@@ -348,10 +348,10 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
             </div>
 
             {notifications.length > 0 && (
-              <div className="p-3 border-t bg-gray-50 dark:bg-gray-800/50 flex-shrink-0">
+              <div className="p-3 border-t bg-gray-50 flex-shrink-0">
                 <Button
                   variant="ghost"
-                  className="w-full text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                  className="w-full text-sm text-blue-600 hover:text-blue-700 hover:bg-blue-50"
                 >
                   View all notifications
                 </Button>
@@ -367,16 +367,16 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
               className="flex items-center gap-2 sm:gap-3 px-1 sm:px-2 lg:px-3 h-10 min-w-0"
             >
               <div className="text-right hidden lg:block min-w-0">
-                <div className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                <div className="text-sm font-medium text-gray-900 truncate">
                   {user.name}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                <div className="text-xs text-gray-500 truncate">
                   {formatRole(user.role)}
                 </div>
               </div>
               <Avatar className="h-8 w-8 flex-shrink-0">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-medium">
+                <AvatarFallback className="bg-blue-100 text-blue-600 text-sm font-medium">
                   {getInitials(user.name)}
                 </AvatarFallback>
               </Avatar>
@@ -384,10 +384,10 @@ const AppNavbar: React.FC<AppNavbarProps> = ({
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56" sideOffset={5}>
             <div className="lg:hidden px-3 py-2 border-b">
-              <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              <div className="text-sm font-medium text-gray-900">
                 {user.name}
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500">
                 {formatRole(user.role)}
               </div>
             </div>
