@@ -17,20 +17,19 @@ import {
   BookText,
   Users,
   Monitor,
+  UploadCloud,
 } from "lucide-react";
 import Link from "next/link";
 
-// Pastikan ada default export
 export default function StudentDetails() {
   const searchParams = useSearchParams();
-  const studentName = searchParams.get("student") || "Student Not Found";
-  const className = searchParams.get("class") || "Kelas Tidak Ditemukan";
+  const studentName = searchParams.get("student") || "Jenny";
+  const className = searchParams.get("class") || "Mutimedia 3A";
 
-  console.log("StudentDetails loaded"); // Debug log
-  console.log("Student:", studentName); // Debug log
-  console.log("Class:", className); // Debug log
+  console.log("StudentDetails loaded");
+  console.log("Student:", studentName);
+  console.log("Class:", className);
 
-  // Mock data for student details
   const classroomDetails = {
     "Mutimedia 3A": {
       image: "/teacher/1.jpg",
@@ -108,30 +107,32 @@ export default function StudentDetails() {
   };
 
   return (
-    <div className="p-3 sm:p-6 bg-gray-50 min-h-screen">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+    <div className="p-4 sm:p-2 bg-gray-50 min-h-screen">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-            Student Details
+            Classroom Details
           </h1>
+          <Link
+            href="/teacher/classes/details"
+            className="text-sm text-gray-500 mt-1 flex items-center gap-1 hover:underline"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            My Classroom
+          </Link>
         </div>
-        <Button variant="secondary">
-          <Download size={16} />
-          <span className="text-sm font-medium ml-2">Import CSV</span>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <Button
+            variant="outline"
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-xl w-full sm:w-auto"
+          >
+            <UploadCloud className="w-4 h-4" />
+            Import .CSV
+          </Button>
+        </div>
       </div>
 
-      <div className="flex items-center mb-6">
-        <Link href={`/teacher/details?class=${encodeURIComponent(className)}`}>
-          <Button variant="ghost" size="sm" className="mr-4">
-            <ArrowLeft size={16} className="mr-2" />
-            <span className="text-sm font-medium text-gray-500">
-              Classroom Details
-            </span>
-          </Button>
-        </Link>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         {/* Informasi Kelas */}
         <div className="lg:col-span-2 space-y-6">
           <Card className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 p-4 w-full hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer">
@@ -167,7 +168,7 @@ export default function StudentDetails() {
             </div>
 
             <div>
-              <Button variant="emerald" size="sm" className="sm:size-default">
+              <Button variant="default" size="sm" className="sm:size-default">
                 <PencilLine size={14} className="mr-1 sm:mr-2 sm:size-4" />
                 <span className="text-xs sm:text-sm">Edit Classroom</span>
               </Button>

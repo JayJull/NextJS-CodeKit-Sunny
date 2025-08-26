@@ -91,12 +91,6 @@ export const teacherMenuItems: MenuItem[] = [
     label: "GENERAL",
     children: [
       {
-        id: "dashboard",
-        label: "Dashboard",
-        icon: <LayoutDashboard className="h-4 w-4" />,
-        href: "/teacher",
-      },
-      {
         id: "my-subject",
         label: "My Subject",
         icon: <BookOpen className="h-4 w-4" />,
@@ -104,33 +98,9 @@ export const teacherMenuItems: MenuItem[] = [
       },
       {
         id: "my-classes",
-        label: "My Classes",
+        label: "My Classroom",
         icon: <LaptopMinimalCheck className="h-4 w-4" />,
         href: "/teacher/classes",
-      },
-      {
-        id: "students",
-        label: "Students",
-        icon: <Users className="h-4 w-4" />,
-        href: "/teacher/students",
-      },
-      {
-        id: "assignments",
-        label: "Assignments",
-        icon: <FileText className="h-4 w-4" />,
-        href: "/teacher/assignments",
-      },
-      {
-        id: "schedule",
-        label: "Schedule",
-        icon: <Calendar className="h-4 w-4" />,
-        href: "/teacher/schedule",
-      },
-      {
-        id: "grades",
-        label: "Grades",
-        icon: <Award className="h-4 w-4" />,
-        href: "/teacher/grades",
       },
     ],
   },
